@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button } from '@spark-digital/ignition'
+// import { Button } from '@spark-digital/ignition'
+import { Button } from '../../common'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const LoginButton = () => {
@@ -8,9 +9,9 @@ const LoginButton = () => {
   return (
     <>
       {isAuthenticated ? (
-        <Button label="Logout" onClick={() => logout({ returnTo: window.location.origin })} />
+        <Button onClick={() => logout({ returnTo: window.location.origin })}>Logout</Button>
       ) : (
-        <Button label="Login" onClick={loginWithRedirect} />
+        <Button onClick={loginWithRedirect}>Login</Button>
       )}
     </>
   )

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text } from '@spark-digital/ignition'
 import styled from 'styled-components'
 import LoginButton from '../LoginButton'
+import { COLORS, Text } from '../../common'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -9,30 +9,27 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   padding: 20px;
   height: 80px;
-  background-color: #212121;
+  background-color: ${COLORS.BODY};
   box-sizing: border-box;
-
-  * {
-    color: white;
-  }
+  border-bottom: 1px solid ${COLORS.GRAY};
 `
 
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
+  color: ${COLORS.WHITE};
 `
 
-const Logo = styled.img`
-  height: 100%;
+const TypoLogo = styled(Text)`
+  font-size: 1.5em;
 `
 
 const Header = () => {
   return (
     <StyledHeader>
       <LogoContainer>
-        <Logo src="/logo.svg" alt="Pedalboards" />
-        <Text kind="button">Pedalboards</Text>
+        <TypoLogo>Pedalboards</TypoLogo>
       </LogoContainer>
       <LoginButton />
     </StyledHeader>

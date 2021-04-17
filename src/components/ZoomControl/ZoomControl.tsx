@@ -1,5 +1,5 @@
-import React, { useRef } from 'react'
-import { Switch } from '@spark-digital/ignition'
+import React from 'react'
+import { Spacer, Switch } from '../../common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setZoom, toggleFitScreen } from '../../redux/ui'
 import { fitScreenSelector, zoomSelector } from '../../redux/selectors'
@@ -7,11 +7,7 @@ import Slider, { SliderProps } from './Slider'
 import styled from 'styled-components'
 
 const ZoomControlWrapper = styled.div`
-  display: flex;
-
-  > * {
-    flex-grow: 1;
-  }
+  /* display: flex; */
 `
 
 const ZoomControl = () => {
@@ -34,6 +30,7 @@ const ZoomControl = () => {
         disabled={fitScreen}
         defaultValue={zoom}
       />
+      <Spacer spacing={80} />
       <Switch
         label="Fit screen"
         isChecked={fitScreen}

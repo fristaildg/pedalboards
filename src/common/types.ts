@@ -1,3 +1,5 @@
+import React from 'react'
+
 export type Pedal = {
   Brand: string
   Height: number
@@ -11,3 +13,6 @@ export type BoardDocument = {
   name?: string
   pedals?: Pedal[]
 }
+
+export type Children = React.ReactChild | React.ReactChild[] | undefined
+export type OnClick = () => void

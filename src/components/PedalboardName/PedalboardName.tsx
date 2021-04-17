@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setBoardName } from '../../redux/board'
-import { TextInput, IconButton, Heading } from '@spark-digital/ignition'
+import { TextInput, IconButton } from '@spark-digital/ignition'
 import styled from 'styled-components'
+import { setBoardName } from '../../redux/board'
+import { Heading } from '../../common'
+
 
 type PedalboardNameProps = {
   name: string
@@ -58,10 +60,10 @@ const PedalboardName = ({ name }: PedalboardNameProps) => {
 
   return (
     <BoardNameWrapper>
-      <Heading level={2}>
+      <Heading tag="h2">
         {name}
       </Heading>
-      <StyledIconButton icon="edit" onClick={toggleIsEditing} />
+      <IconButton icon="edit" onClick={toggleIsEditing} />
     </BoardNameWrapper>
   )
 }

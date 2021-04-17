@@ -4,7 +4,7 @@ import { ReactSortable } from 'react-sortablejs'
 import styled, { css } from 'styled-components'
 import Pedal from '../Pedal'
 import { pedalsSelector, fitScreenSelector, boardNameSelector } from '../../redux/selectors'
-import { Pedal as PedalType } from '../../commonTypes'
+import { Pedal as PedalType } from '../../common/types'
 import { reorderPedals } from '../../redux/board'
 import SignalChain from '../SignalChain'
 import PedalboardName from '../PedalboardName'
@@ -17,13 +17,17 @@ type BoardSurfaceProps = {
   fitScreen?: boolean
 }
 
+type BoardProps = {
+  className?: string
+}
+
 export const BoardSurface = styled(ReactSortable)<BoardSurfaceProps>`
   background-color: lightgray;
   display: flex;
   align-items: center;
   overflow: auto;
-  flex-wrap: nowrap;
   padding: 20px;
+  width: 100%;
 
   > * {
     ${({ fitScreen }) => !fitScreen && css`flex-shrink: 0;`}
@@ -36,7 +40,7 @@ const BoardFooter = styled.footer`
   justify-content: flex-end;
 `
 
-const Board = () => {
+const Board = ({ className }: BoardProps) => {
   const dispatch = useDispatch()
   const pedals = useSelector(pedalsSelector)
   const boardName = useSelector(boardNameSelector)
@@ -64,7 +68,7 @@ const Board = () => {
   }
   
   return (
-    <div>
+    <div className={className}>
       <PedalboardName name={boardName} />
       {pedals.length > 0 && (
         <>

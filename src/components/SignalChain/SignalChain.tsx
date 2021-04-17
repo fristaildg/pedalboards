@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Text, Chip, IconButton } from '@spark-digital/ignition'
-import { Pedal } from '../../commonTypes'
+import { Pedal } from '../../common/types'
 import styled from 'styled-components'
 
 type SignalChainProps = {

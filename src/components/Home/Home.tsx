@@ -9,7 +9,7 @@ const Home = () => {
   
   return (
     <>
-      <Header />   
+      {/* <Header />    */}
       {!!user ? (
         <Dashboard user={user} />
       ) : (

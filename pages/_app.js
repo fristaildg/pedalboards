@@ -5,10 +5,14 @@ import { Auth0Provider } from '@auth0/auth0-react'
 import { FirebaseAppProvider } from 'reactfire'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
+import Head from 'next/head'
+import styled from 'styled-components'
 import store from '../src/store'
 import 'firebase/firestore';
 import 'firebase/storage';
 import '../styles/globals.css'
+import Header from '../src/components/Header'
+import { COLORS } from '../src/common'
 
 const auth0Credentials = {
   domain: 'mtg-ts.auth0.com',
@@ -29,6 +33,13 @@ const firebaseConfig = {
 
 let persistor = persistStore(store)
 
+const StyledMain = styled.main`
+  width: 100%;
+  height: 100%;
+  background-color: ${COLORS.BODY};
+  color: ${COLORS.WHITE};
+`
+
 function MyApp({ Component, pageProps }) {
   return (
     <React.StrictMode>
@@ -38,7 +49,16 @@ function MyApp({ Component, pageProps }) {
           <StoreProvider store={store}>
             <PersistGate persistor={persistor} loading={null}>
               <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-                <Component {...pageProps} />
+                <>
+                  <Head>
+                    <link rel="preconnect" href="https://fonts.gstatic.com" />
+                    <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@700&family=Fira+Sans+Condensed:wght@600&family=Trykker&display=swap" rel="stylesheet" />
+                  </Head>
+                  <Header />
+                  <StyledMain>
+                    <Component {...pageProps} />
+                  </StyledMain>
+                </>
               </FirebaseAppProvider>
             </PersistGate>
           </StoreProvider>

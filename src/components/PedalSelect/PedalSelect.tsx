@@ -1,7 +1,7 @@
 import React from 'react'
-import { Select } from '@spark-digital/ignition'
+import { Select } from '../../common'
 import { usePedals } from '../../swr/usePedals'
-import { Pedal } from '../../commonTypes'
+import { Pedal } from '../../common/types'
 import { useDispatch } from 'react-redux'
 import { addPedal } from '../../redux/board'
 
@@ -26,7 +26,7 @@ const PedalSelect = () => {
       label="Choose a pedal"
       options={pedalOptions}
       onChange={(event: PedalOption) => getPedal(event)}
-      loading={loading}
+      isLoading={loading}
     />
   )
 }

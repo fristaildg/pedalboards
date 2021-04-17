@@ -1,28 +1,52 @@
 import React from 'react'
-import { Text, Heading } from '@spark-digital/ignition'
+import { Heading, Text, SIZES, Spacer } from '../../common'
 import styled from 'styled-components'
 import LoginButton from '../LoginButton'
 
 const PageWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 50px;
   text-align: center;
+  height: ${`calc(100vh - ${SIZES.HEADER_HEIGHT}px)`};
+  box-sizing: border-box;
+  overflow-x: hidden;
 `
 
-const Logo = styled.img`
-  width: 200px;
+const LeftCol = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const RightCol = styled.div`
+  width: 50%;
+  height: 100%;
+  transform: translateX(150px);
+`
+
+const HeroImage = styled.div<{bgImage: string}>`
+  width: 200%;
+  height: 100%;
+  background: url(${({bgImage}) => bgImage});
+  background-size: contain;
+  background-repeat: no-repeat;
 `
 
 const Welcome = () => {
   return (
     <PageWrapper>
-      <Logo src="/logo.svg" alt="Pedalboards"/>
-      <Heading>Welcome to Pedalboards</Heading>
-      <Text kind="quote">Build your own guitar / bass-guitar pedalboard, <br /> attach sample sounds and share it with the whole world!</Text>
-      <LoginButton />
+      <LeftCol>
+        <Heading>Welcome to Pedalboards</Heading>
+        <Spacer />
+        <Text>Build your own guitar / bass-guitar pedalboard, <br /> attach sample sounds and share it with the whole world!</Text>
+        <Spacer />
+        <LoginButton />
+      </LeftCol>
+      <RightCol>
+        <HeroImage bgImage='/hero-image.jpg' />
+      </RightCol>
     </PageWrapper>
   )
 }

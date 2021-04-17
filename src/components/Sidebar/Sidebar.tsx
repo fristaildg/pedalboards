@@ -4,19 +4,20 @@ import { IconButton } from '@spark-digital/ignition'
 import { useRouter } from 'next/router'
 import PedalSelect from '../PedalSelect'
 import ZoomControl from '../ZoomControl'
+import { COLORS } from '../../common'
+
+type SidebarProps = {
+  className?: string
+}
 
 const StyledAside = styled.aside`
-  display: flex;
-  justify-content: space-around;
-
-  > * {
-    width: 50%;
-  }
+  border-right: 1px solid ${COLORS.GRAY};
+  padding: 20px;
 `
 
 const SidebarHeader = styled.header``
 
-const Sidebar = () => {
+const Sidebar = ({ className }: SidebarProps) => {
   const router = useRouter()
 
   const goToHome = () => {
@@ -24,15 +25,13 @@ const Sidebar = () => {
   }
 
   return (
-    <>
+    <StyledAside className={className}>
       <SidebarHeader>
         <IconButton icon="chevron-left" onClick={goToHome} />
       </SidebarHeader>
-      <StyledAside>
-        <PedalSelect />
-        <ZoomControl />
-      </StyledAside>
-    </>
+      <PedalSelect />
+      <ZoomControl />
+    </StyledAside>
   )
 }
 

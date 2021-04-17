@@ -3,7 +3,7 @@ import { Heading } from '@spark-digital/ignition'
 import { BoardSurface } from './Board'
 import Pedal from '../Pedal'
 import AudioSamples from '../AudioSamples'
-import { Pedal as PedalType } from '../../commonTypes'
+import { Pedal as PedalType } from '../../common/types'
 import { useBoard } from '../../swr/useFirebase'
 import SignalChain from '../SignalChain'
 

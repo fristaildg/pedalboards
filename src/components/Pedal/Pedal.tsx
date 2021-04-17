@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Modal, useModal, Heading, Text } from '@spark-digital/ignition'
-import { Pedal as PedalType } from '../../commonTypes'
+import { Pedal as PedalType } from '../../common/types'
 import { zoomSelector } from '../../redux/selectors'
 import PedalControls from './PedalControls'
 

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Pedal } from '../commonTypes'
+import { Pedal } from '../common/types'
 
 export type BoardState = {
   id: string | null
