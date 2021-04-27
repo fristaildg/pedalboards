@@ -12,6 +12,7 @@ const StyledHeader = styled.header`
   background-color: ${COLORS.BODY};
   box-sizing: border-box;
   border-bottom: 1px solid ${COLORS.GRAY};
+  position: sticky;
 `
 
 const LogoContainer = styled.div`

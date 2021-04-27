@@ -9,6 +9,7 @@ const ACCENT_LIGHT = '#A8F9FF'
 const WHITE = 'white'
 
 // sizes
+const KNOBS = 15
 const HEADER_HEIGHT = 80
 const SPACING = 10
 const GRID_DESKTOP = 1200
@@ -19,5 +20,5 @@ const SERIF_PRIMARY = 'Averia Serif Libre, cursive'
 const SERIF_SECONDARY = 'Trykker, serif'
 
 export const COLORS = { PRIMARY, PRIMARY_LIGHT, BODY, ACCENT, ACCENT_LIGHT, WHITE, GRAY, BODY_HOVER }
-export const SIZES = { HEADER_HEIGHT, SPACING, GRID_DESKTOP }
+export const SIZES = { HEADER_HEIGHT, SPACING, GRID_DESKTOP, KNOBS }
 export const FONTS = { SANS_SERIF, SERIF_PRIMARY, SERIF_SECONDARY }

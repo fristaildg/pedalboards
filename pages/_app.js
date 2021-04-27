@@ -12,7 +12,7 @@ import 'firebase/firestore';
 import 'firebase/storage';
 import '../styles/globals.css'
 import Header from '../src/components/Header'
-import { COLORS } from '../src/common'
+import { COLORS, SIZES } from '../src/common'
 
 const auth0Credentials = {
   domain: 'mtg-ts.auth0.com',
@@ -35,6 +35,7 @@ let persistor = persistStore(store)
 
 const StyledMain = styled.main`
   width: 100%;
+  /* height: ${`calc(100% - ${SIZES.HEADER_HEIGHT})`}; */
   height: 100%;
   background-color: ${COLORS.BODY};
   color: ${COLORS.WHITE};

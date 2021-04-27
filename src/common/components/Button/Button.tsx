@@ -7,6 +7,7 @@ import { Text } from '../Typography'
 type ButtonProps = {
   children: Children
   onClick?: OnClick
+  isDisabled?: boolean
 }
 
 const StyledButton = styled.button`
@@ -24,11 +25,16 @@ const StyledButton = styled.button`
   &:hover {
     background-color: ${COLORS.ACCENT_LIGHT};
   }
+
+  &:disabled {
+    background-color: ${COLORS.GRAY};
+    pointer-events: none;
+  }
 `
 
-const ButtonComp = ({ children, onClick }: ButtonProps) => {
+const ButtonComp = ({ children, onClick, isDisabled }: ButtonProps) => {
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton onClick={onClick} disabled={isDisabled}>
       <Text fontStyle="sans-serif">{children}</Text>
     </StyledButton>
   )

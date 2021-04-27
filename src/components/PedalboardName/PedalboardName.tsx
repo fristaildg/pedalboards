@@ -1,30 +1,36 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { TextInput, IconButton } from '@spark-digital/ignition'
+import { Icon, Spacer } from '../../common'
 import styled from 'styled-components'
 import { setBoardName } from '../../redux/board'
-import { Heading } from '../../common'
+import { Heading, Input } from '../../common'
 
 
 type PedalboardNameProps = {
   name: string
 }
 
-const StyledIconButton = styled(IconButton)``
+const EditIcon = styled(Icon)``
 
 const BoardNameWrapper = styled.div`
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  cursor: pointer;
 
-  ${StyledIconButton} {
+  ${EditIcon} {
     opacity: 0;
   }
 
   &:hover {
-    ${StyledIconButton} {
+    ${EditIcon} {
       opacity: 1;
     }
   }
+`
+
+const EditInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 const PedalboardName = ({ name }: PedalboardNameProps) => {
@@ -48,22 +54,25 @@ const PedalboardName = ({ name }: PedalboardNameProps) => {
   }
 
   if (isEditing) return (
-    <div>
-      <TextInput
-        placeholder={name}
+    <EditInputWrapper>
+      <Input
+        defaultValue={name}
         ref={editInputRef}
       />
-      <IconButton icon="save" onClick={handleSaveClick} />
-      <IconButton icon="times" onClick={toggleIsEditing} />
-    </div>
+      <Spacer />
+      <Icon src='./icons/save.svg' onClick={handleSaveClick} />
+      <Spacer />
+      <Icon src='./icons/close.svg' onClick={toggleIsEditing} />
+    </EditInputWrapper>
   )
 
   return (
-    <BoardNameWrapper>
+    <BoardNameWrapper onClick={toggleIsEditing}>
       <Heading tag="h2">
         {name}
       </Heading>
-      <IconButton icon="edit" onClick={toggleIsEditing} />
+      <Spacer />
+      <EditIcon src='./icons/pencil.svg' />
     </BoardNameWrapper>
   )
 }
