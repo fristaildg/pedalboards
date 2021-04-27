@@ -1,40 +1,27 @@
-import React, { useRef } from 'react'
-import ReactSlider from 'react-slider'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text } from '@spark-digital/ignition'
+import { Spacer, Text, Slider, SliderValue, SliderProps } from '../../common'
 
-export type SliderProps = {
-  onAfterChange: (value: number | number[] | null | undefined) => void
-  disabled?: boolean
-  defaultValue?: number | undefined 
+type ZoomSliderProps = SliderProps & {
+  onAfterChange: (value: SliderValue) => void
 }
 
 const SliderWrapper = styled.div``
 
-const Thumb = styled.div<HTMLDivElement>`
-  background-color: #0767E2;
-  color: white;
-  padding: 5px;
-`
+const ZoomSlider = ({ onAfterChange, disabled, defaultValue }: ZoomSliderProps) => {
+  const [value, setValue] = useState<SliderValue>(defaultValue)
 
-const Track = styled.div<HTMLDivElement>`
-  height: 5px;
-  background-color: lightgray;
-`
-
-const Slider = ({ onAfterChange, disabled, defaultValue }: SliderProps) => {
-  const sliderRef = useRef<any>(null)
+  const handleAfterChange = (sliderValue: SliderValue) => {
+    onAfterChange(sliderValue)
+    setValue(sliderValue)
+  }
 
   return (
     <SliderWrapper>
-      <Text kind="input">Set zoom</Text>
-      <ReactSlider
-        ref={sliderRef}
-        // @ts-ignore
-        renderThumb={(props, state) => <Thumb {...props}>{state.valueNow}</Thumb>}
-        // @ts-ignore
-        renderTrack={(props, state) => <Track {...props} index={state.index} />}
-        onAfterChange={onAfterChange}
+      <Text>Set zoom ({value as React.ReactChild}%)</Text>
+      <Spacer spacing={20} />
+      <Slider
+        onAfterChange={handleAfterChange}
         disabled={disabled}
         defaultValue={defaultValue}
       />
@@ -42,4 +29,4 @@ const Slider = ({ onAfterChange, disabled, defaultValue }: SliderProps) => {
   )
 }
 
-export default Slider
+export default ZoomSlider

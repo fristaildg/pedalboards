@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import RSwitch from 'rc-switch'
 import { Text } from '../Typography/'
-import { COLORS } from '../../theme/constants'
+import { COLORS, SIZES } from '../../theme/constants'
+import { Spacer } from '../Spacer'
 
 type SwitchProps = {
   label: string
@@ -14,7 +15,6 @@ type SwitchProps = {
 const SwitchWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
 `
 
 const StyledSwitch = styled(RSwitch)`
@@ -30,8 +30,8 @@ const StyledSwitch = styled(RSwitch)`
   cursor: pointer;
 
   .rc-switch-inner {
-    width: 15px;
-    height: 15px;
+    width: ${SIZES.KNOBS}px;
+    height: ${SIZES.KNOBS}px;
     display: block;
     background-color: ${COLORS.PRIMARY_LIGHT};
     border-radius: 50%;
@@ -56,6 +56,7 @@ const Switchcomp = ({ label, isChecked, onChange, isDisabled }: SwitchProps) => 
   return (
     <SwitchWrapper>
       <Text>{label}</Text>
+      <Spacer />
       <StyledSwitch
         checked={isChecked}
         onChange={onChange}

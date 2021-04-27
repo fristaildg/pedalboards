@@ -1,25 +1,28 @@
 import React from 'react'
-import { IconButton } from '@spark-digital/ignition'
 import { useDispatch } from 'react-redux'
 import { removePedal } from '../../redux/board'
 import styled from 'styled-components'
+import { Icon } from '../../common'
 
 export type PedalControlsProps = {
   name: string
   className?: string
+  disabled?: boolean
 }
 
-const PedalControls = ({ name, className }: PedalControlsProps) => {
+const ControlsWrapper = styled.div``
+
+const PedalControls = ({ name, className, disabled }: PedalControlsProps) => {
   const dispatch = useDispatch()
 
   const handleIconButtonClick = () => {
     dispatch(removePedal(name))
   }
 
-  return (
-    <div className={className}>
-      <IconButton icon="times" onClick={handleIconButtonClick} />
-    </div>
+  return disabled ? null : (
+    <ControlsWrapper className={className}>
+      <Icon src='./icons/close.svg' onClick={handleIconButtonClick} />
+    </ControlsWrapper>
   )
 }
 

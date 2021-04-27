@@ -1,6 +1,23 @@
 import React from 'react'
-import { Text } from '@spark-digital/ignition'
+import styled from 'styled-components'
+import { Text, Input, COLORS, FONTS, SIZES } from '../../common'
 import { useAudioFiles } from '../../swr/useFirebase'
+
+const UploadInput = styled(Input)`
+  input::file-selector-button {
+    background-color: ${COLORS.GRAY};
+    border: none;
+    font-family: ${FONTS.SANS_SERIF};
+    padding: ${SIZES.SPACING}px;
+    color: ${COLORS.WHITE};
+    margin-right: ${SIZES.SPACING}px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${COLORS.ACCENT};
+    }
+  }
+`
 
 const UploadAudioInput = () => {
   const { uploadFile, loading } = useAudioFiles()
@@ -12,7 +29,7 @@ const UploadAudioInput = () => {
 
   if (loading) return <Text>Uploading audio...</Text>
 
-  return <input type="file" onChange={handleFileUpload} />
+  return <UploadInput type="file" onChange={handleFileUpload} />
 }
 
 export default UploadAudioInput

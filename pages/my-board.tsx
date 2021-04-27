@@ -5,6 +5,11 @@ import Sidebar from '../src/components/Sidebar'
 const PageWrapper = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
+  
+  > * {
+    overflow-y: auto;
+  }
 `
 
 const StyledSidebar = styled(Sidebar)`

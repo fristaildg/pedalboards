@@ -60,7 +60,7 @@ const Pedal = ({ pedal, controls = true }: PedalProps) => {
         zoom={zoom}
         onClick={showModal}
       >
-        {controls && <PedalControls name={Name} />}
+        <PedalControls name={Name} disabled={!controls} />
         <PedalImage
           src={`${imagesLocation}/${Image}`}
           alt={Name}

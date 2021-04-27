@@ -1,10 +1,9 @@
 import React from 'react'
-import { Heading } from '@spark-digital/ignition'
-import AudioPlayer from 'react-audio-player'
+import AudioPlayer from '../AudioPlayer'
 import styled from 'styled-components'
-import { Text } from '@spark-digital/ignition'
 import UploadAudioInput from '../UploadAudioInput'
 import { useBoard } from '../../swr/useFirebase'
+import { COLORS, Heading, Spacer, Text } from '../../common'
 
 type AudioSamplesProps = {
   uploader?: boolean
@@ -13,11 +12,16 @@ type AudioSamplesProps = {
 
 const AudioSamplesWrapper = styled.div`
   padding: 10px 20px;
-  background-color: lightgray;
-  display: flex;
+  border: 1px dashed ${COLORS.GRAY};
+  display: inline-flex;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+`
+
+const UploadWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 const AudioPlayerList = styled.ul`
@@ -33,18 +37,22 @@ const AudioSamples = ({ uploader = true, boardId }: AudioSamplesProps) => {
   return (
     <AudioSamplesWrapper>
       <div>
-        <Heading level={2}>Audio Samples</Heading>
-        {uploader && <UploadAudioInput />}
+        <Heading tag='h2'>Audio Samples</Heading>
+        <Spacer />
+        <UploadWrapper>
+          <Text>Upload up to 2 audio files (5MB max)</Text>
+          <Spacer />
+          {uploader && <UploadAudioInput />}
+        </UploadWrapper>
       </div>
-      <div>
-        <AudioPlayerList>
-          {audioSamples && audioSamples.length > 0 && audioSamples.map((audio: string, index: number) => (
-            <li key={index}>
-              <AudioPlayer controls src={audio} />
-            </li>
-          ))}
-        </AudioPlayerList>
-      </div>
+      <AudioPlayerList>
+        {audioSamples && audioSamples.length > 0 && audioSamples.map((audio: string, index: number) => (
+          <li key={index}>
+            <AudioPlayer src={audio} />
+            <Spacer />
+          </li>
+        ))}
+      </AudioPlayerList>
     </AudioSamplesWrapper>
   )
 }

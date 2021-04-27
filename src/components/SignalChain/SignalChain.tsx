@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
-import { Text, Chip, IconButton } from '@spark-digital/ignition'
 import { Pedal } from '../../common/types'
 import styled from 'styled-components'
+import { COLORS, Icon, Spacer, Text } from '../../common'
 
 type SignalChainProps = {
   chain: Pedal[]
@@ -9,15 +9,13 @@ type SignalChainProps = {
 
 const SignalChainWrapper = styled.div`
   padding: 20px;
+  border: 1px dashed ${COLORS.GRAY};
 `
 
 const PedalsWrapper = styled.div`
   display: flex;
   align-items: center;
-`
-
-const StyledChip = styled(Chip)`
-  margin: 0 5px;
+  flex-wrap: wrap;
 `
 
 const SignalChain = ({ chain }: SignalChainProps) => {
@@ -25,14 +23,22 @@ const SignalChain = ({ chain }: SignalChainProps) => {
 
   return (
     <SignalChainWrapper>
-      <Text>Current signal chain:</Text>
+      <Text fontStyle="sans-serif">Current signal chain:</Text>
+      <Spacer />
       <PedalsWrapper>
+        <Icon src='./icons/music.svg' width={40} color={COLORS.WHITE} />
+        <Spacer />
         {pedalNames.map(pedal => 
           <React.Fragment key={pedal}>
-            <IconButton icon='chevron-right' onClick={() => {}} />
-            <StyledChip variant="secondary">{pedal}</StyledChip>
+            <Icon src='./icons/arrow-right.svg' />
+            <Spacer />
+            <Text>{pedal}</Text>
+            <Spacer />
           </React.Fragment>
         )}
+        <Icon src='./icons/arrow-right.svg' />
+        <Spacer />
+        <Icon src='./icons/speaker.svg' width={40} color={COLORS.WHITE} />
       </PedalsWrapper>
     </SignalChainWrapper>
   )

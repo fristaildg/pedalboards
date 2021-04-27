@@ -9,8 +9,9 @@ import { reorderPedals } from '../../redux/board'
 import SignalChain from '../SignalChain'
 import PedalboardName from '../PedalboardName'
 import { useBoard } from '../../swr/useFirebase'
-import { Button, useAlert, Alert } from '@spark-digital/ignition'
+import { useAlert, Alert } from '@spark-digital/ignition'
 import AudioSamples from '../AudioSamples'
+import { COLORS, Spacer, Button } from '../../common'
 
 type BoardSurfaceProps = {
   pedalsLength?: number
@@ -22,7 +23,7 @@ type BoardProps = {
 }
 
 export const BoardSurface = styled(ReactSortable)<BoardSurfaceProps>`
-  background-color: lightgray;
+  border: 1px dashed ${COLORS.GRAY};
   display: flex;
   align-items: center;
   overflow: auto;
@@ -70,6 +71,7 @@ const Board = ({ className }: BoardProps) => {
   return (
     <div className={className}>
       <PedalboardName name={boardName} />
+      <Spacer />
       {pedals.length > 0 && (
         <>
           <BoardSurface
@@ -82,13 +84,19 @@ const Board = ({ className }: BoardProps) => {
               <Pedal key={pedal.Name} pedal={pedal} />
             ))}
           </BoardSurface>
+          <Spacer />
           <SignalChain chain={pedals} />
+          <Spacer />
         </>
       )}
       <AudioSamples />
-      <BoardFooter>
-        <Button label="Save" onClick={handleSaveClick} isDisabled={saving} />
-      </BoardFooter>
+      <Spacer />
+      <Button
+        onClick={handleSaveClick}
+        isDisabled={saving}
+      >
+        {saving ? 'Saving' : 'Save Pedalboard'}
+      </Button>
       <Alert {...alertProps} message="Pedalboard saved!" intent="success" placement="bottom" />
     </div>
   )

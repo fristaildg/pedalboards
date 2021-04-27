@@ -30,7 +30,7 @@ const ZoomControl = () => {
         disabled={fitScreen}
         defaultValue={zoom}
       />
-      <Spacer spacing={80} />
+      <Spacer spacing={50} />
       <Switch
         label="Fit screen"
         isChecked={fitScreen}
