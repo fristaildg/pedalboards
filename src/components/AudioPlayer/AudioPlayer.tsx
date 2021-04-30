@@ -80,7 +80,7 @@ const AudioPlayer = ({ src }: AudioPlayerProps) => {
     <StyledPlayer>
       <PlayerUI>
         <Icon
-          src={isPlaying ? './icons/pause.svg' : './icons/play.svg'}
+          src={isPlaying ? '/icons/pause.svg' : '/icons/play.svg'}
           onClick={toggleAudio}
         />
         <Spacer />

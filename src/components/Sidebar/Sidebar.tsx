@@ -15,7 +15,6 @@ type AsideListItemProps = {
 }
 
 const StyledAside = styled.aside`
-  border-right: 1px solid ${COLORS.GRAY};
   height: 100%;
 `
 

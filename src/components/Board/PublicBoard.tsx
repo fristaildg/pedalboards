@@ -1,5 +1,6 @@
 import React from 'react'
-import { Heading } from '@spark-digital/ignition'
+import styled from 'styled-components'
+import { Heading, Icon, Spacer } from '../../common'
 import { BoardSurface } from './Board'
 import Pedal from '../Pedal'
 import AudioSamples from '../AudioSamples'
@@ -7,7 +8,15 @@ import { Pedal as PedalType } from '../../common/types'
 import { useBoard } from '../../swr/useFirebase'
 import SignalChain from '../SignalChain'
 
-const PublicBoard = ({ boardId }) => {
+type PublicBoardProps = {
+  boardId: string
+}
+
+const BoardWrapper = styled.div`
+  padding: 20px;
+`
+
+const PublicBoard = ({ boardId }: PublicBoardProps) => {
   const { board, loading } = useBoard(boardId)
 
   if (!board && loading) return <p>Loading board</p>
@@ -15,8 +24,9 @@ const PublicBoard = ({ boardId }) => {
   const { name, pedals } = board
 
   return (
-    <>
-      <Heading level={2}>{name}</Heading>
+    <BoardWrapper>
+      <Heading>{name}</Heading>
+      <Icon src="./icons/trash.svg" />
       {pedals && pedals.length > 0 && (
         <>
           <BoardSurface as={'ul'} fitScreen>
@@ -27,8 +37,9 @@ const PublicBoard = ({ boardId }) => {
           <SignalChain chain={pedals} />
         </>
       )}
+      <Spacer spacing={20} />
       <AudioSamples uploader={false} boardId={boardId} />
-    </>
+    </BoardWrapper>
   )
 }
 

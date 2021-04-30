@@ -21,7 +21,7 @@ const PedalControls = ({ name, className, disabled }: PedalControlsProps) => {
 
   return disabled ? null : (
     <ControlsWrapper className={className}>
-      <Icon src='./icons/close.svg' onClick={handleIconButtonClick} />
+      <Icon src='/icons/trash.svg' onClick={handleIconButtonClick} />
     </ControlsWrapper>
   )
 }

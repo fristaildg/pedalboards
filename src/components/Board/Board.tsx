@@ -9,9 +9,9 @@ import { reorderPedals } from '../../redux/board'
 import SignalChain from '../SignalChain'
 import PedalboardName from '../PedalboardName'
 import { useBoard } from '../../swr/useFirebase'
-import { useAlert, Alert } from '@spark-digital/ignition'
+// import { useAlert, Alert } from '@spark-digital/ignition'
 import AudioSamples from '../AudioSamples'
-import { COLORS, Spacer, Button } from '../../common'
+import { COLORS, Spacer, Button, Alert } from '../../common'
 
 type BoardSurfaceProps = {
   pedalsLength?: number
@@ -29,6 +29,7 @@ export const BoardSurface = styled(ReactSortable)<BoardSurfaceProps>`
   overflow: auto;
   padding: 20px;
   width: 100%;
+  overflow-y: auto;
 
   > * {
     ${({ fitScreen }) => !fitScreen && css`flex-shrink: 0;`}
@@ -49,7 +50,7 @@ const Board = ({ className }: BoardProps) => {
   const [reorderedPedals, setReorderedPedals] = useState()
   const [saving, setSaving] = useState(false)
   const { updateBoard } = useBoard()
-  const { showAlert, ...alertProps } = useAlert()  
+  const [alertVisible, setAlertVisible] = useState(false)  
   
   useEffect(() => {
     if (!!reorderedPedals) {
@@ -65,7 +66,7 @@ const Board = ({ className }: BoardProps) => {
     setSaving(true)
     await updateBoard({ name: boardName, pedals })
     setSaving(false)
-    showAlert()
+    setAlertVisible(true)
   }
   
   return (
@@ -97,7 +98,11 @@ const Board = ({ className }: BoardProps) => {
       >
         {saving ? 'Saving' : 'Save Pedalboard'}
       </Button>
-      <Alert {...alertProps} message="Pedalboard saved!" intent="success" placement="bottom" />
+      <Alert
+        isOpen={alertVisible}
+        onTimeout={() => setAlertVisible(false)} 
+        message="Pedalboard saved!"
+      />
     </div>
   )
 }

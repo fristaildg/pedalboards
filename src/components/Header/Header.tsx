@@ -1,18 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 import LoginButton from '../LoginButton'
-import { COLORS, Text } from '../../common'
+import { COLORS, SIZES, Text } from '../../common'
 
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  height: 80px;
+  width: 100%;
+  height: ${SIZES.HEADER_HEIGHT}px;
   background-color: ${COLORS.BODY};
   box-sizing: border-box;
   border-bottom: 1px solid ${COLORS.GRAY};
-  position: sticky;
+  position: fixed;
+  top: 0;
 `
 
 const LogoContainer = styled.div`

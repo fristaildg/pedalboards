@@ -1,10 +1,11 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { Modal, useModal, Heading, Text } from '@spark-digital/ignition'
 import { Pedal as PedalType } from '../../common/types'
 import { zoomSelector } from '../../redux/selectors'
+import { togglePedalModal } from '../../redux/ui'
 import PedalControls from './PedalControls'
+import PedalModal from './PedalModal'
 
 const imagesLocation = 'https://www.pedalplayground.com/public/images/pedals'
 
@@ -46,11 +47,15 @@ const PedalImage = styled.img`
 
 const Pedal = ({ pedal, controls = true }: PedalProps) => {
   const zoom = useSelector(zoomSelector)
-  const { showModal, ...modalProps } = useModal()
+  const dispatch = useDispatch()
 
   if (!pedal) return null
 
   const { Image, Width, Height, Name, Brand } = pedal
+
+  const handlePedalClick = () => {
+    dispatch(togglePedalModal(Name))
+  }
 
   return (
     <>
@@ -58,7 +63,7 @@ const Pedal = ({ pedal, controls = true }: PedalProps) => {
         pedalWidth={Width}
         pedalHeight={Height}
         zoom={zoom}
-        onClick={showModal}
+        onClick={handlePedalClick}
       >
         <PedalControls name={Name} disabled={!controls} />
         <PedalImage
@@ -66,10 +71,7 @@ const Pedal = ({ pedal, controls = true }: PedalProps) => {
           alt={Name}
         />
       </ImagelWrapper>
-      <Modal {...modalProps}>
-        <Heading level={2}>{Name}</Heading>
-        <Text kind="quote">{Brand}</Text>
-      </Modal>
+      <PedalModal pedal={pedal} />
     </>
   )
 }

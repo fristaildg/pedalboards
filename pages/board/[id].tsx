@@ -5,12 +5,10 @@ const UserBoard = () => {
   const router = useRouter()
   const { id } = router.query
 
-  console.log(id)
-
   if (!id) return null
 
   return (
-    <PublicBoard boardId={id} />
+    <PublicBoard boardId={id as string} />
   )
 }
 

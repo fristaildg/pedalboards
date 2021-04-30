@@ -12,6 +12,7 @@ const StyledSpacer = styled.div<SpacerProps>`
   margin: ${({spacing}) => `${spacing}px`};
   margin-right: ${({spacingX}) => `${spacingX}px`};
   margin-bottom: ${({spacingY}) => `${spacingY}px`};
+  box-sizing: border-box;
 `
 
 const SpacerComp = ({spacing, spacingX, spacingY}: SpacerProps) => {

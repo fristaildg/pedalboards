@@ -1,11 +1,16 @@
 import React from 'react'
 
+export type PedalKnobs = {
+  [key: string]: number
+}
+
 export type Pedal = {
   Brand: string
   Height: number
   Image: string
   Name: string
   Width: number
+  knobs?: PedalKnobs
 }
 
 export type BoardDocument = {
@@ -14,5 +19,5 @@ export type BoardDocument = {
   pedals?: Pedal[]
 }
 
-export type Children = React.ReactChild | React.ReactChild[] | undefined
+export type Children = React.ReactNode | React.ReactNode[] | undefined
 export type OnClick = () => void

@@ -17,6 +17,11 @@ type InputProps = {
   className?: string
 }
 
+const InputLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+`
+
 const StyledInput = styled.input`
   background-color: transparent;
   border: 1px solid ${COLORS.GRAY};
@@ -34,7 +39,7 @@ const StyledInput = styled.input`
 const InputComp = forwardRef<HTMLInputElement, InputProps>(
   ({ onChange, defaultValue, value, placeholder, label, id = 'input-component', name, onBlur, onFocus, type = 'text', className }: InputProps, ref) => {
     return (
-      <label
+      <InputLabel
         htmlFor={id}
         className={className}
       >
@@ -51,7 +56,7 @@ const InputComp = forwardRef<HTMLInputElement, InputProps>(
             id={id}
             type={type}
           />
-      </label>
+      </InputLabel>
     )
   }
 )
