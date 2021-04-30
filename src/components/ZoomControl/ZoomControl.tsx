@@ -3,7 +3,7 @@ import { Spacer, Switch } from '../../common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setZoom, toggleFitScreen } from '../../redux/ui'
 import { fitScreenSelector, zoomSelector } from '../../redux/selectors'
-import Slider, { SliderProps } from './Slider'
+import Slider, { ZoomSliderProps } from './Slider'
 import styled from 'styled-components'
 
 const ZoomControlWrapper = styled.div`
@@ -15,7 +15,7 @@ const ZoomControl = () => {
   const fitScreen = useSelector(fitScreenSelector)
   const zoom = useSelector(zoomSelector)
 
-  const handleZoomChange: SliderProps['onAfterChange'] = (value) => {
+  const handleZoomChange: ZoomSliderProps['onAfterChange'] = (value) => {
     dispatch(setZoom(value))
   }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Spacer, Text, Slider, SliderValue, SliderProps } from '../../common'
 
-type ZoomSliderProps = SliderProps & {
+export type ZoomSliderProps = SliderProps & {
   onAfterChange: (value: SliderValue) => void
 }
 
