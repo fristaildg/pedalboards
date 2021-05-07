@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ReactSortable } from 'react-sortablejs'
 import styled, { css } from 'styled-components'
 import Pedal from '../Pedal'
-import { pedalsSelector, fitScreenSelector, boardNameSelector } from '../../redux/selectors'
+import { pedalsSelector, fitScreenSelector, boardNameSelector, boardIdSelector } from '../../redux/selectors'
 import { Pedal as PedalType } from '../../common/types'
 import { reorderPedals } from '../../redux/board'
 import SignalChain from '../SignalChain'
@@ -12,6 +12,7 @@ import { useBoard } from '../../swr/useFirebase'
 // import { useAlert, Alert } from '@spark-digital/ignition'
 import AudioSamples from '../AudioSamples'
 import { COLORS, Spacer, Button, Alert } from '../../common'
+import CopyBoardLink from './CopyBoardLink'
 
 type BoardSurfaceProps = {
   pedalsLength?: number
@@ -37,19 +38,21 @@ export const BoardSurface = styled(ReactSortable)<BoardSurfaceProps>`
 `
 
 const BoardFooter = styled.footer`
-  padding: 20px;
+  /* padding: 20px; */
   display: flex;
-  justify-content: flex-end;
+  align-items: flex-start;
+  /* justify-content: flex-end; */
 `
 
 const Board = ({ className }: BoardProps) => {
   const dispatch = useDispatch()
   const pedals = useSelector(pedalsSelector)
   const boardName = useSelector(boardNameSelector)
+  const boardId = useSelector(boardIdSelector)
   const fitScreen = useSelector(fitScreenSelector)
   const [reorderedPedals, setReorderedPedals] = useState()
   const [saving, setSaving] = useState(false)
-  const { updateBoard } = useBoard()
+  const { updateBoard, board } = useBoard()
   const [alertVisible, setAlertVisible] = useState(false)  
   
   useEffect(() => {
@@ -92,12 +95,16 @@ const Board = ({ className }: BoardProps) => {
       )}
       <AudioSamples />
       <Spacer />
-      <Button
-        onClick={handleSaveClick}
-        isDisabled={saving}
-      >
-        {saving ? 'Saving' : 'Save Pedalboard'}
-      </Button>
+      <BoardFooter>
+        <Button
+          onClick={handleSaveClick}
+          isDisabled={saving}
+        >
+          {saving ? 'Saving' : 'Save Pedalboard'}
+        </Button>
+        <Spacer />
+        <CopyBoardLink boardId={boardId} />
+      </BoardFooter>
       <Alert
         isOpen={alertVisible}
         onTimeout={() => setAlertVisible(false)} 

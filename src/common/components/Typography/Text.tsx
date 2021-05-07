@@ -8,15 +8,24 @@ type TextProps = {
   tag?: 'p' | 'span'
   fontStyle?: 'serif' | 'sans-serif'
   className?: string;
+  fontSize?: number
 }
 
 const StyledText = styled.span<TextProps>`
   font-family: ${({fontStyle}) => fontStyle === 'serif' ? FONTS.SERIF_SECONDARY : FONTS.SANS_SERIF};
+  font-size: ${({fontSize}) => `${fontSize}px`};
 `
 
-const TextComp = ({ children, tag, fontStyle = 'serif', className }: TextProps) => {
+const TextComp = ({ children, tag, fontStyle = 'serif', className, fontSize = 16 }: TextProps) => {
   return (
-    <StyledText className={className} as={tag} fontStyle={fontStyle}>{children}</StyledText>
+    <StyledText
+      className={className}
+      as={tag}
+      fontStyle={fontStyle}
+      fontSize={fontSize}
+    >
+      {children}
+    </StyledText>
   )
 }
 

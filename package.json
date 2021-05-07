@@ -29,6 +29,7 @@
     "react-slider": "^1.1.4",
     "react-sortablejs": "^6.0.0",
     "react-virtualized": "^9.22.3",
+    "react-window": "^1.8.6",
     "reactfire": "^3.0.0-rc.0",
     "redux-persist": "^6.0.0",
     "sortablejs": "^1.13.0",
@@ -40,6 +41,7 @@
     "@types/react-select": "^4.0.14",
     "@types/react-slider": "^1.1.1",
     "@types/react-virtualized": "^9.21.11",
+    "@types/react-window": "^1.8.3",
     "typescript": "^4.2.3"
   }
 }

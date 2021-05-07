@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Children, OnClick } from '../../types'
-import { COLORS } from '../../theme/constants'
+import { COLORS, FONTS } from '../../theme/constants'
 import { Text } from '../Typography' 
 
 type ButtonProps = {
@@ -19,7 +19,6 @@ const StyledButton = styled.button`
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
-  font-family: 'Fira Sans Condensed', sans-serif;
   letter-spacing: 2px;
 
   &:hover {
@@ -35,7 +34,7 @@ const StyledButton = styled.button`
 const ButtonComp = ({ children, onClick, isDisabled }: ButtonProps) => {
   return (
     <StyledButton onClick={onClick} disabled={isDisabled}>
-      <Text fontStyle="sans-serif">{children}</Text>
+      <Text fontStyle="sans-serif" fontSize={14}>{children}</Text>
     </StyledButton>
   )
 }

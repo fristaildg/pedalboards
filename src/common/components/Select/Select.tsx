@@ -4,6 +4,7 @@ import RSelect, { Props } from 'react-select'
 import { COLORS, SIZES } from '../../theme/constants'
 import { Text } from '../Typography/Text'
 import { Spacer } from '../Spacer'
+import { FixedSizeList as List } from 'react-window'
 
 type SelectProps = Props
 
@@ -38,6 +39,24 @@ const styles = {
   }),
 }
 
+const MenuList = ({options, children, maxHeight, getValue}: any) => {
+  const height = 40
+  const [value] = getValue()
+  const initialOffset = options.indexOf(value) * height
+
+  return (
+    <List
+      height={maxHeight}
+      itemCount={children.length}
+      itemSize={height}
+      initialScrollOffset={initialOffset}
+      width="100%"
+    >
+      {({ index, style }) => <div style={style}>{children[index]}</div>}
+    </List>
+  )
+}
+
 const SelectComp = ({ options, label, onChange, isLoading }: SelectProps) => {
   return (
     <>
@@ -49,6 +68,7 @@ const SelectComp = ({ options, label, onChange, isLoading }: SelectProps) => {
         onChange={onChange}
         isLoading={isLoading}
         styles={styles}
+        components={{ MenuList }}
       />
     </>
   )

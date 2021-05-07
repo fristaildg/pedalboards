@@ -19,6 +19,7 @@ const StyledBoard = styled(Board)`
   box-sizing: border-box;
   width: calc(100% - 300px);
   border-left: 1px solid ${COLORS.GRAY};
+  height: 100%;
 `
 
 const MyBoard = () => (

@@ -40,7 +40,7 @@ const AudioSamples = ({ uploader = true, boardId }: AudioSamplesProps) => {
         <Heading tag='h2'>Audio Samples</Heading>
         <Spacer />
         <UploadWrapper>
-          <Text>Upload up to 2 audio files (5MB max)</Text>
+          {uploader && <Text>Upload up to 2 audio files (5MB max)</Text>}
           <Spacer />
           {uploader && <UploadAudioInput />}
         </UploadWrapper>
