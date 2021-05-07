@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
-import { COLORS } from '../../src/common'
+import { COLORS, SIZES } from '../../src/common'
 import { PublicBoard } from '../../src/components/Board'
 import ZoomControl from '../../src/components/ZoomControl'
 import { PageContextProvider } from '../../src/context/pageContext'
@@ -20,6 +20,9 @@ const ZoomControlWrapper = styled.div`
   justify-content: flex-end;
   border: 1px solid ${COLORS.GRAY};
   align-self: flex-end;
+  top: ${SIZES.HEADER_HEIGHT}px;
+  position: sticky;
+  background-color: ${COLORS.BODY};
 `
 
 const UserBoard = () => {
