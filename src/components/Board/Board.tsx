@@ -10,7 +10,7 @@ import SignalChain from '../SignalChain'
 import PedalboardName from '../PedalboardName'
 import { useBoard } from '../../swr/useFirebase'
 import AudioSamples from '../AudioSamples'
-import { COLORS, Spacer, Button, Alert } from '../../common'
+import { COLORS, Spacer, Button, Alert, SubHeading, Text, SIZES } from '../../common'
 import CopyBoardLink from './CopyBoardLink'
 
 type BoardSurfaceProps = {
@@ -34,6 +34,11 @@ export const BoardSurface = styled(ReactSortable)<BoardSurfaceProps>`
   > * {
     ${({ fitScreen }) => !fitScreen && css`flex-shrink: 0;`}
   }
+`
+
+const EmptyBoardSurface = styled(BoardSurface)`
+  flex-direction: column;
+  padding: ${SIZES.HEADER_HEIGHT}px;
 `
 
 const BoardFooter = styled.footer`
@@ -73,7 +78,7 @@ const Board = ({ className }: BoardProps) => {
     <div className={className}>
       <PedalboardName name={boardName} />
       <Spacer />
-      {pedals.length > 0 && (
+      {pedals.length > 0 ? (
         <>
           <BoardSurface
             fitScreen={fitScreen}
@@ -87,6 +92,14 @@ const Board = ({ className }: BoardProps) => {
           </BoardSurface>
           <Spacer />
           <SignalChain chain={pedals} />
+          <Spacer />
+        </>
+      ) : (
+        <>
+          <EmptyBoardSurface as='div'>
+            <SubHeading>Let's Add some pedals!</SubHeading>
+            <Text>Select pedals from the list, sort them according to you signal chain and even add some knobs to each of them</Text>
+          </EmptyBoardSurface>
           <Spacer />
         </>
       )}

@@ -1,16 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## TODO
- - Finish Public board page
  - Add translations
  - Add tour guide to bard page
  - Write tests
- - Add link to public board in my-board page 
  - Restrict amount of audio files / max weight
  - Add more info to the welcome page
- - Don't ask for login/register until user wants to save a pedalboard (?)
  - Loading animation / icon / skeleton
- - Optimize pedal selector
  - Figure out how to add more pedals to the database / how to manage pedals database
 
 ## Getting Started
