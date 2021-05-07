@@ -29,9 +29,8 @@ const CopyButton = styled.div`
 
 const CopyBoardLink = ({ boardId }: CopyBoardLinkProps) => {
   const [showAlert, setShowAlert] = useState(false)
-  const boardLink = `http://pedalboards.com/board/${boardId}`
-
-  console.log(process.env.NODE_ENV)
+  const url = process.env.NODE_ENV === 'production' ? 'https://pedalboards-fristaildg.vercel.app' : 'http://localhost:3000'
+  const boardLink = `${url}/board/${boardId}`
   
   const handleCopyClick = () => {
     if (navigator.clipboard) {
