@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import LoginButton from '../LoginButton'
+import { useRouter } from 'next/router'
 import { COLORS, SIZES, Text } from '../../common'
 
 const StyledHeader = styled.header`
@@ -15,6 +16,7 @@ const StyledHeader = styled.header`
   border-bottom: 1px solid ${COLORS.GRAY};
   position: fixed;
   top: 0;
+  z-index: 2;
 `
 
 const LogoContainer = styled.div`
@@ -22,6 +24,7 @@ const LogoContainer = styled.div`
   align-items: center;
   height: 100%;
   color: ${COLORS.WHITE};
+  cursor: pointer;
 `
 
 const TypoLogo = styled(Text)`
@@ -29,9 +32,13 @@ const TypoLogo = styled(Text)`
 `
 
 const Header = () => {
+  const { push } = useRouter()
+
+  const goToHome = () => push('/')
+
   return (
     <StyledHeader>
-      <LogoContainer>
+      <LogoContainer onClick={goToHome}>
         <TypoLogo>Pedalboards</TypoLogo>
       </LogoContainer>
       <LoginButton />

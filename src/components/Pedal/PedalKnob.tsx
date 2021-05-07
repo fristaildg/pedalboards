@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { PageContext } from '../../context/pageContext'
 import Knob from 'react-dial-knob'
 import styled, { css } from 'styled-components'
 import { Icon, Spacer, Text } from '../../common'
@@ -52,6 +53,7 @@ const KnobValue = styled(Text)`
 `
 
 const PedalKnob = ({ label = 'unnamed knob', defaultValue, onRemoveClick, onChange, isDisabled }: PedalKnobProps) => {
+  const { isPublic } = useContext(PageContext)
   const [value, setValue] = useState<number>(defaultValue || 0)
   const handleValueChange = (event: number) => {
     setValue(event)
@@ -60,7 +62,7 @@ const PedalKnob = ({ label = 'unnamed knob', defaultValue, onRemoveClick, onChan
 
   return (
     <KnobWrapper disabled={isDisabled}>
-      <RemoveIcon src='/icons/trash.svg' onClick={onRemoveClick} />
+      {!isPublic && <RemoveIcon src='/icons/trash.svg' onClick={onRemoveClick} />}
       <Knob
         diameter={100}
         value={value}

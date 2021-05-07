@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { PageContext } from '../../context/pageContext'
 import AudioPlayer from '../AudioPlayer'
 import styled from 'styled-components'
 import UploadAudioInput from '../UploadAudioInput'
@@ -6,7 +7,6 @@ import { useBoard } from '../../swr/useFirebase'
 import { COLORS, Heading, Spacer, Text } from '../../common'
 
 type AudioSamplesProps = {
-  uploader?: boolean
   boardId?: string
 }
 
@@ -28,8 +28,9 @@ const AudioPlayerList = styled.ul`
   list-style: none;
 `
 
-const AudioSamples = ({ uploader = true, boardId }: AudioSamplesProps) => {
+const AudioSamples = ({ boardId }: AudioSamplesProps) => {
   const { board, loading } = useBoard(boardId)
+  const { isPublic } = useContext(PageContext)
   
   if (!board && loading) return <Text>Loading audio samples...</Text>
   const { audioSamples } = board
@@ -40,9 +41,9 @@ const AudioSamples = ({ uploader = true, boardId }: AudioSamplesProps) => {
         <Heading tag='h2'>Audio Samples</Heading>
         <Spacer />
         <UploadWrapper>
-          {uploader && <Text>Upload up to 2 audio files (5MB max)</Text>}
+          {!isPublic && <Text>Upload up to 2 audio files (5MB max)</Text>}
           <Spacer />
-          {uploader && <UploadAudioInput />}
+          {!isPublic && <UploadAudioInput />}
         </UploadWrapper>
       </div>
       <AudioPlayerList>

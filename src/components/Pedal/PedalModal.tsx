@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
-import { Modal, ModalHeader, ModalBody, Heading, Text, Input, Spacer, Button, Alert, SubHeading } from '../../common'
+import { PageContext } from '../../context/pageContext'
+import { Modal, ModalHeader, ModalBody, Heading, Text, Input, Spacer, Button, Alert, SubHeading, COLORS } from '../../common'
 import PedalKnob from './PedalKnob'
 import { useKnobs } from './Pedal.utils'
 import { pedalModalSelector } from '../../redux/selectors'
@@ -15,10 +16,22 @@ type PedalModalProps = {
 const StyledModalHeader = styled(ModalHeader)`
   display: flex;
   align-items: center;
+  padding: 0;
+`
+
+const HeaderInfo = styled.div`
+  padding: 20px;
+  border-right: 1px solid ${COLORS.GRAY};
+`
+
+const AddKnob = styled.div`
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
 `
 
 const AddKnobInput = styled(Input)`
-  margin: 0 auto;
+  /* margin: 0 auto; */
 `
 
 const KnobGroup = styled.div`
@@ -26,16 +39,20 @@ const KnobGroup = styled.div`
   align-items: center;
 `
 
-const EmptyKnobsContainer = styled(() => (
-  <>
-    <PedalKnob isDisabled label="pedal knob" />
-    <Spacer />
-    <div>
-      <SubHeading>Add some knobs!</SubHeading>
+const EmptyKnobsContainer = styled(({ isPublic }) => (
+  !isPublic ? (
+    <>
+      <PedalKnob isDisabled label="pedal knob" />
       <Spacer />
-      <Text>Add knobs like this one with a name and a value (1 - 10) to show how your pedal is configured</Text>
-    </div>
-  </>
+      <div>
+        <SubHeading>Add some knobs!</SubHeading>
+        <Spacer />
+        <Text>Add knobs like this one with a name and a value (1 - 10) to show how your pedal is configured</Text>
+      </div>
+    </>
+  ) : (
+    <Text>No knobs have been added to this pedal yet</Text>
+  )
 ))``
 
 const PedalModal = ({ pedal }: PedalModalProps) => {
@@ -44,6 +61,7 @@ const PedalModal = ({ pedal }: PedalModalProps) => {
   const dispatch = useDispatch()
   const { knobs, addKnob, removeKnob, saveKnobs, updateKnobValue } = useKnobs(pedal)
   const [alertVisible, setAlertVisible] = useState(false)
+  const { isPublic } = useContext(PageContext)
 
   const handleAddKnobClick = () => {
     if (inputRef.current) {
@@ -69,16 +87,21 @@ const PedalModal = ({ pedal }: PedalModalProps) => {
   return (
     <Modal isOpen={isOpen && pedal.Name === pedalName} onCloseClick={handleCloseClick}>
       <StyledModalHeader>
-        <div>
+        <HeaderInfo>
           <Heading>{pedal?.Name}</Heading>
           <Text>{pedal?.Brand}</Text>
-        </div>
-        <AddKnobInput
-          placeholder="Volume, gain, treble, etc..."
-          label="Add a knob"
-          ref={inputRef}
-        />
-        <Button onClick={handleAddKnobClick}>Add knob</Button>
+        </HeaderInfo>
+        {!isPublic && (
+          <AddKnob>
+            <AddKnobInput
+              placeholder="Volume, gain, treble, etc..."
+              label="Add a knob"
+              ref={inputRef}
+            />
+            <Spacer />
+            <Button onClick={handleAddKnobClick}>Add knob</Button>
+          </AddKnob>
+        )}
       </StyledModalHeader>
       <ModalBody>
         <KnobGroup>
@@ -93,7 +116,7 @@ const PedalModal = ({ pedal }: PedalModalProps) => {
               <Spacer />
             </React.Fragment>
           )) : (
-            <EmptyKnobsContainer />
+            <EmptyKnobsContainer isPublic={isPublic} />
           )}
         </KnobGroup>
       </ModalBody>

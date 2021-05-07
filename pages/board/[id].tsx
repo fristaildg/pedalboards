@@ -1,10 +1,25 @@
 import { useRouter } from 'next/router'
-import { PublicBoard } from '../../src/components/Board'
 import styled from 'styled-components'
+import { COLORS } from '../../src/common'
+import { PublicBoard } from '../../src/components/Board'
+import ZoomControl from '../../src/components/ZoomControl'
+import { PageContextProvider } from '../../src/context/pageContext'
 
 const UserBoardWrapper = styled.div`
   max-width: 1620px;
   margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+`
+
+const ZoomControlWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: flex-end;
+  border: 1px solid ${COLORS.GRAY};
+  align-self: flex-end;
 `
 
 const UserBoard = () => {
@@ -14,9 +29,14 @@ const UserBoard = () => {
   if (!id) return null
 
   return (
-    <UserBoardWrapper>
-      <PublicBoard boardId={id as string} />
-    </UserBoardWrapper>
+    <PageContextProvider value={{ isPublic: true }}>
+      <UserBoardWrapper>
+        <ZoomControlWrapper>
+          <ZoomControl />
+        </ZoomControlWrapper>
+        <PublicBoard boardId={id as string} />
+      </UserBoardWrapper>
+    </PageContextProvider>
   )
 }
 

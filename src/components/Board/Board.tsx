@@ -9,7 +9,6 @@ import { reorderPedals } from '../../redux/board'
 import SignalChain from '../SignalChain'
 import PedalboardName from '../PedalboardName'
 import { useBoard } from '../../swr/useFirebase'
-// import { useAlert, Alert } from '@spark-digital/ignition'
 import AudioSamples from '../AudioSamples'
 import { COLORS, Spacer, Button, Alert } from '../../common'
 import CopyBoardLink from './CopyBoardLink'
@@ -38,10 +37,8 @@ export const BoardSurface = styled(ReactSortable)<BoardSurfaceProps>`
 `
 
 const BoardFooter = styled.footer`
-  /* padding: 20px; */
   display: flex;
   align-items: flex-start;
-  /* justify-content: flex-end; */
 `
 
 const Board = ({ className }: BoardProps) => {

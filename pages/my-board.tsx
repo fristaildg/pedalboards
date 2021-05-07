@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { COLORS, SIZES } from '../src/common'
 import Board from '../src/components/Board'
 import Sidebar from '../src/components/Sidebar'
+import { PageContextProvider } from '../src/context/pageContext'
 
 const PageWrapper = styled.div`
   display: flex;
@@ -23,10 +24,12 @@ const StyledBoard = styled(Board)`
 `
 
 const MyBoard = () => (
-  <PageWrapper>
-    <StyledSidebar />
-    <StyledBoard />
-  </PageWrapper>
+  <PageContextProvider value={{ isPublic: false }}>
+    <PageWrapper>
+      <StyledSidebar />
+      <StyledBoard />
+    </PageWrapper>
+  </PageContextProvider>
 )
 
 export default MyBoard
