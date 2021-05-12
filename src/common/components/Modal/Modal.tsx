@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { rgba } from 'polished'
 import { COLORS } from '../../theme/constants'
@@ -7,6 +7,7 @@ import { Portal } from '../Portal'
 import { Icon } from '../Icon'
 import { Spacer } from '../Spacer'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useOnClickOutside } from '../../../utils/hooks'
 
 type ModalProps = {
   children: Children
@@ -57,26 +58,34 @@ const contentWrapperAnimation = {
   exit: { y: 15, opacity: 0 },
 }
 
-const ModalComp = ({ isOpen, children, onCloseClick }: ModalProps) => (
-  <Portal selector="#modal-portal">
-    <AnimatePresence>
-      {isOpen && (
-        <Overlay {...overlayAnimation}>
-          <AnimatePresence>
-            {isOpen && (
-              <ContentWrapper {...contentWrapperAnimation}>
-                <CloseIcon src='/icons/close.svg' onClick={onCloseClick} />
-                <Spacer spacingY={5}/>
-                <Content>
-                  {children}
-                </Content>
-              </ContentWrapper>
-            )}
-          </AnimatePresence>
-        </Overlay>
-      )}
-    </AnimatePresence>
-  </Portal>
-)
+const ModalComp = ({ isOpen, children, onCloseClick }: ModalProps) => {
+  const onClickOutsideRef = useRef(null)
+  useOnClickOutside(onClickOutsideRef, onCloseClick)
+
+  return (
+    <Portal selector="#modal-portal">
+      <AnimatePresence>
+        {isOpen && (
+          <Overlay {...overlayAnimation}>
+            <AnimatePresence>
+              {isOpen && (
+                <ContentWrapper
+                  ref={onClickOutsideRef}
+                  {...contentWrapperAnimation}
+                >
+                  <CloseIcon src='/icons/close.svg' onClick={onCloseClick} />
+                  <Spacer spacingY={5}/>
+                  <Content>
+                    {children}
+                  </Content>
+                </ContentWrapper>
+              )}
+            </AnimatePresence>
+          </Overlay>
+        )}
+      </AnimatePresence>
+    </Portal>
+  )
+}
 
 export const Modal = styled(ModalComp)``

@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import LoginButton from '../LoginButton'
+// import LoginButton from '../LoginButton'
 import { useRouter } from 'next/router'
-import { COLORS, SIZES, Text } from '../../common'
+import { COLORS, SIZES, Spacer, Text } from '../../common'
+import UserWidget from '../UserWidget'
 
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 0 0 0 20px;
   width: 100%;
   height: ${SIZES.HEADER_HEIGHT}px;
   background-color: ${COLORS.BODY};
@@ -27,6 +28,12 @@ const LogoContainer = styled.div`
   cursor: pointer;
 `
 
+const UserContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+`
+
 const TypoLogo = styled(Text)`
   font-size: 1.5em;
 `
@@ -41,7 +48,9 @@ const Header = () => {
       <LogoContainer onClick={goToHome}>
         <TypoLogo>Pedalboards</TypoLogo>
       </LogoContainer>
-      <LoginButton />
+      <UserContainer>
+        <UserWidget />
+      </UserContainer>
     </StyledHeader>
   )
 }

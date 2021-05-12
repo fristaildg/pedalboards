@@ -1,6 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## TODO
+ - Implement soundcloud player
+ - Add Custom Pedal feature
  - Add translations
  - Add tour guide to bard page
  - Write tests
@@ -8,6 +10,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
  - Add more info to the welcome page
  - Loading animation / icon / skeleton
  - Figure out how to add more pedals to the database / how to manage pedals database
+ - Add user page
 
 ## Getting Started
 
