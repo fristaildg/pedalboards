@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Text, Input, COLORS, FONTS, SIZES } from '../../common'
 import { useAudioFiles } from '../../swr/useFirebase'
@@ -19,17 +19,28 @@ const UploadInput = styled(Input)`
   }
 `
 
+const sizeLimit = 5000
+
 const UploadAudioInput = () => {
   const { uploadFile, loading } = useAudioFiles()
+  const [ isTooLarge, setIsTooLarge ] = useState(false)
+  const helperText = isTooLarge ? 'This audio is too large to upload' : undefined
 
   const handleFileUpload = (event: any) => {
     const file = event.target.files[0]
-    uploadFile(file)
+    const fileSize = Math.round((file.size / 1024))
+    console.log(file)
+    if (fileSize > sizeLimit) {
+      setIsTooLarge(true)
+    } else {
+      uploadFile(file)
+    }
   }
 
   if (loading) return <Text>Uploading audio...</Text>
 
-  return <UploadInput type="file" onChange={handleFileUpload} />
+  // @ts-ignore
+  return <UploadInput type="file" accept="audio/*" onChange={handleFileUpload} helperText={helperText} />
 }
 
 export default UploadAudioInput

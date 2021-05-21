@@ -9,7 +9,7 @@ import { Spacer } from '../Spacer'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useOnClickOutside } from '../../../utils/hooks'
 
-type ModalProps = {
+export type ModalProps = {
   children: Children
   isOpen: boolean
   onCloseClick?: () => void
@@ -59,8 +59,11 @@ const contentWrapperAnimation = {
 }
 
 const ModalComp = ({ isOpen, children, onCloseClick }: ModalProps) => {
+  const handleOnCloseClick = () => {
+    if (onCloseClick) onCloseClick()
+  }
   const onClickOutsideRef = useRef(null)
-  useOnClickOutside(onClickOutsideRef, onCloseClick)
+  useOnClickOutside(onClickOutsideRef, handleOnCloseClick)
 
   return (
     <Portal selector="#modal-portal">
@@ -73,7 +76,9 @@ const ModalComp = ({ isOpen, children, onCloseClick }: ModalProps) => {
                   ref={onClickOutsideRef}
                   {...contentWrapperAnimation}
                 >
-                  <CloseIcon src='/icons/close.svg' onClick={onCloseClick} />
+                  {!!onCloseClick && (
+                    <CloseIcon src='/icons/close.svg' onClick={onCloseClick} />
+                  )}
                   <Spacer spacingY={5}/>
                   <Content>
                     {children}

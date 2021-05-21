@@ -15,6 +15,8 @@ type InputProps = {
   name?: string
   type?: string
   className?: string
+  helperText?: string
+  accept?: string
 }
 
 const InputLabel = styled.label`
@@ -37,7 +39,7 @@ const StyledInput = styled.input`
 `
 
 const InputComp = forwardRef<HTMLInputElement, InputProps>(
-  ({ onChange, defaultValue, value, placeholder, label, id = 'input-component', name, onBlur, onFocus, type = 'text', className }: InputProps, ref) => {
+  ({ onChange, defaultValue, value, placeholder, label, id = 'input-component', name, onBlur, onFocus, type = 'text', className, helperText, accept }: InputProps, ref) => {
     return (
       <InputLabel
         htmlFor={id}
@@ -55,7 +57,11 @@ const InputComp = forwardRef<HTMLInputElement, InputProps>(
             name={name}
             id={id}
             type={type}
+            accept={accept}
           />
+          {helperText && (
+            <Text color={COLORS.ERROR}>{helperText}</Text>
+          )}
       </InputLabel>
     )
   }

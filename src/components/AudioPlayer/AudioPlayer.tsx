@@ -1,15 +1,18 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { COLORS, Icon, SIZES, Slider, SliderValue, Spacer, Text } from '../../common'
+import { useDispatch } from 'react-redux'
 import { addSeconds, format } from 'date-fns'
+import { COLORS, Icon, SIZES, Slider, SliderValue, Spacer, Text } from '../../common'
+import { toggleDeleteAudioModal } from '../../redux/audioPlayer'
 import { formatTime, sliderValueToTime, timeToSliderValue } from './AudioPlayer.utils'
 
 type AudioPlayerProps = {
   src: string
+  name: string
 }
 
 const StyledPlayer = styled.div`
-  height: ${SIZES.HEADER_HEIGHT}px;
+  height: auto;
   width: 200px;
   border: 1px solid ${COLORS.GRAY};
   color: ${COLORS.WHITE};
@@ -17,6 +20,28 @@ const StyledPlayer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  &:hover {
+    background-color: ${COLORS.BODY_HOVER};
+  }
+`
+
+const PlayerOptions = styled.div`
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const AudioName = styled(Text)`
+  width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`
+
+const DeleteIconButton = styled(Icon)`
+  /* width: 30%; */
 `
 
 const PlayerUI = styled.div`
@@ -29,10 +54,11 @@ const PlayerTimes = styled.div`
   justify-content: space-between;
 `
 
-const AudioPlayer = ({ src }: AudioPlayerProps) => {
+const AudioPlayer = ({ src, name }: AudioPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
+  const dispatch = useDispatch()
 
   const playerRef = useRef<HTMLAudioElement>(null)
   const intervalRef = useRef<number | null>(null)
@@ -71,6 +97,10 @@ const AudioPlayer = ({ src }: AudioPlayerProps) => {
     setCurrentTime(sliderValueToTime(event as number, duration) || currentTime)
   }
 
+  const openDeleteModal = () => {
+    dispatch(toggleDeleteAudioModal(name))
+  }
+
   const formattedDuration = useMemo(() => formatTime(duration), [duration])
   const elapsedTime = useMemo(() => format(addSeconds(new Date(0), currentTime), 'mm:ss'), [currentTime])
   const sliderValue = useMemo(() => timeToSliderValue(currentTime, duration), [currentTime, duration]) 
@@ -78,6 +108,13 @@ const AudioPlayer = ({ src }: AudioPlayerProps) => {
 
   return (
     <StyledPlayer>
+      <PlayerOptions>
+        <AudioName>{name}</AudioName>
+        <DeleteIconButton
+          src='./icons/trash.svg'
+          onClick={openDeleteModal}
+        />
+      </PlayerOptions>
       <PlayerUI>
         <Icon
           src={isPlaying ? '/icons/pause.svg' : '/icons/play.svg'}

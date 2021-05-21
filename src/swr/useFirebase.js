@@ -44,13 +44,21 @@ export const useBoard = (boardId) => {
 export const useAudioFiles = (boardId) => {
   const { updateBoard, board } = useBoard(boardId)
   const [loading, setLoading] = useState(false)
+  const [deleteStatus, setDeleteStatus] = useState('idle')
   const storageRef = useStorage().ref()
+  const audioSamples = board.audioSamples || []
+
   const uploadFile = async (blob) => {
     try {
       setLoading(true)
       const file = await storageRef.child(`audio-samples/${blob.name}`).put(blob)
-      const fileURL = await file.ref.getDownloadURL()
-      updateBoard({ audioSamples: [...board.audioSamples, fileURL] })
+      const url = await file.ref.getDownloadURL()
+      const name = blob.name
+      const fileObj = {
+        url,
+        name
+      }
+      updateBoard({ audioSamples: [...audioSamples, fileObj] })
     } catch (error) {
       console.log(error)
     } finally {
@@ -58,8 +66,25 @@ export const useAudioFiles = (boardId) => {
     }
   }
 
+  const deleteFile = async (fileName) => {
+    try {
+      setLoading(true)
+      await storageRef.child(`audio-samples/${fileName}`).delete()
+      await updateBoard({ audioSamples: audioSamples.filter(sample => sample.name !== fileName) })
+      setDeleteStatus('succeeded')
+    } catch (error) {
+      console.log(error)
+      setDeleteStatus('errored')
+    } finally {
+      setLoading(false)
+      // setDeleteStatus('idle')
+    }
+  }
+
   return {
     uploadFile,
-    loading
+    deleteFile,
+    loading,
+    deleteStatus
   }
 }

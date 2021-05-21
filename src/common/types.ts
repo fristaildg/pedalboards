@@ -21,3 +21,8 @@ export type BoardDocument = {
 
 export type Children = React.ReactNode | React.ReactNode[] | undefined
 export type OnClick = () => void
+
+export type AudioFileObject = {
+  name: string
+  url: string
+}

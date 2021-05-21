@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { Pedal as PedalType } from '../../common/types'
 import { zoomSelector } from '../../redux/selectors'
-import { togglePedalModal } from '../../redux/ui'
+import { togglePedalModal } from '../../redux/pedal'
 import PedalControls from './PedalControls'
 import PedalModal from './PedalModal'
 
@@ -20,7 +20,7 @@ type ImageProps = {
   pedalHeight: PedalType['Height']
 }
 
-const ImagelWrapper = styled.div<ImageProps>`
+const ImageWrapper = styled.div<ImageProps>`
   cursor: pointer;
   ${({ pedalWidth, zoom}) => `
     width: ${pedalWidth * zoom}px;
@@ -59,7 +59,7 @@ const Pedal = ({ pedal, controls = true }: PedalProps) => {
 
   return (
     <>
-      <ImagelWrapper
+      <ImageWrapper
         pedalWidth={Width}
         pedalHeight={Height}
         zoom={zoom}
@@ -70,7 +70,7 @@ const Pedal = ({ pedal, controls = true }: PedalProps) => {
           src={`${imagesLocation}/${Image}`}
           alt={Name}
         />
-      </ImagelWrapper>
+      </ImageWrapper>
       <PedalModal pedal={pedal} />
     </>
   )

@@ -12,16 +12,20 @@ import {
 import storage from 'redux-persist/lib/storage'
 import boardReducer from './redux/board'
 import uiReducer from './redux/ui'
+import pedalReducer from './redux/pedal'
+import audioPlayerReducer from './redux/audioPlayer'
 
 const rootReducer = combineReducers({
   board: boardReducer,
   ui: uiReducer,
+  pedal: pedalReducer,
+  audioPlayer: audioPlayerReducer,
 })
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['ui']
+  blacklist: ['ui', 'audioPlayer']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

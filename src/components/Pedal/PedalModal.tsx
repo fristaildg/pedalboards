@@ -6,7 +6,7 @@ import { Modal, ModalHeader, ModalBody, Heading, Text, Input, Spacer, Button, Al
 import PedalKnob from './PedalKnob'
 import { useKnobs } from './Pedal.utils'
 import { pedalModalSelector } from '../../redux/selectors'
-import { closePedalModal } from '../../redux/ui'
+import { closePedalModal } from '../../redux/pedal'
 import { Pedal } from '../../common/types'
 
 type PedalModalProps = {
