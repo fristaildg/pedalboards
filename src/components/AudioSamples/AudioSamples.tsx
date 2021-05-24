@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext } from 'react'
 import { PageContext } from '../../context/pageContext'
 import AudioPlayer from '../AudioPlayer'
 import styled from 'styled-components'
@@ -13,7 +13,7 @@ type AudioSamplesProps = {
   boardId?: string
 }
 
-const AudioSamplesWrapper = styled.div`
+export const AudioSamplesWrapper = styled.div`
   padding: 10px 20px;
   border: 1px dashed ${COLORS.GRAY};
   display: inline-flex;
@@ -22,14 +22,15 @@ const AudioSamplesWrapper = styled.div`
   flex-wrap: wrap;
 `
 
+export const AudioPlayerList = styled.ul`
+  list-style: none;
+`
+
 const UploadWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `
 
-const AudioPlayerList = styled.ul`
-  list-style: none;
-`
 
 const AudioSamples = ({ boardId }: AudioSamplesProps) => {
   const { board, loading } = useBoard(boardId)

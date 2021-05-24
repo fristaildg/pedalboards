@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## TODO
  - Fix public board not working
+ - - Fix Pedal Modal (knobs are not disabled and modal cannot be closed)
+ - - Fix AudioSamples 
  ✔️ Restrict amount of audio files / max weight
  - Remove trash icon from audio player if isPublic
  - Move Dashboard to it's own page

@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Icon, Spacer } from '../../common'
+import { Heading, Spacer } from '../../common'
+import { PublicAudioSamples } from '../AudioSamples'
 import { BoardSurface } from './Board'
 import Pedal from '../Pedal'
-import AudioSamples from '../AudioSamples'
-import { AudioFileObject, Pedal as PedalType } from '../../common/types'
+import { Pedal as PedalType } from '../../common/types'
 import { usePublicBoard } from '../../swr/useFirebase'
 import SignalChain from '../SignalChain'
 import { fitScreenSelector } from '../../redux/selectors'
@@ -24,7 +24,7 @@ const PublicBoard = ({ boardId }: PublicBoardProps) => {
 
   if (!board && loading) return <p>Loading board</p>
 
-  const { name, pedals } = board
+  const { name, pedals, audioSamples } = board
 
   return (
     <BoardWrapper>
@@ -40,7 +40,7 @@ const PublicBoard = ({ boardId }: PublicBoardProps) => {
         </>
       )}
       <Spacer spacing={20} />
-      {/* <AudioSamples samples={audioSamples} /> */}
+      <PublicAudioSamples samples={audioSamples} />
     </BoardWrapper>
   )
 }
