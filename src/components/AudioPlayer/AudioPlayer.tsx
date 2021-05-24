@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { addSeconds, format } from 'date-fns'
 import { COLORS, Icon, SIZES, Slider, SliderValue, Spacer, Text } from '../../common'
 import { toggleDeleteAudioModal } from '../../redux/audioPlayer'
 import { formatTime, sliderValueToTime, timeToSliderValue } from './AudioPlayer.utils'
+import { PageContext } from '../../context/pageContext'
 
 type AudioPlayerProps = {
   src: string
@@ -55,6 +56,7 @@ const PlayerTimes = styled.div`
 `
 
 const AudioPlayer = ({ src, name }: AudioPlayerProps) => {
+  const { isPublic } = useContext(PageContext)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
@@ -110,10 +112,12 @@ const AudioPlayer = ({ src, name }: AudioPlayerProps) => {
     <StyledPlayer>
       <PlayerOptions>
         <AudioName>{name}</AudioName>
-        <DeleteIconButton
-          src='/icons/trash.svg'
-          onClick={openDeleteModal}
-        />
+        {!isPublic && (
+          <DeleteIconButton
+            src='/icons/trash.svg'
+            onClick={openDeleteModal}
+          />
+        )}
       </PlayerOptions>
       <PlayerUI>
         <Icon

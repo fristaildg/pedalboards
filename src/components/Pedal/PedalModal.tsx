@@ -76,7 +76,7 @@ const PedalModal = ({ pedal }: PedalModalProps) => {
   }
 
   const handleCloseClick = () => {
-    saveKnobs()
+    if(!isPublic) saveKnobs()
     dispatch(closePedalModal())
   }
 

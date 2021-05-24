@@ -34,7 +34,6 @@ const KnobWrapper = styled.div<{disabled?: boolean}>`
 
   ${({disabled}) => disabled && css`
     pointer-events: none;
-    opacity: 0.5;
   `}
 `
 
@@ -61,7 +60,7 @@ const PedalKnob = ({ label = 'unnamed knob', defaultValue, onRemoveClick, onChan
   }
 
   return (
-    <KnobWrapper disabled={isDisabled}>
+    <KnobWrapper disabled={isDisabled || isPublic}>
       {!isPublic && <RemoveIcon src='/icons/trash.svg' onClick={onRemoveClick} />}
       <Knob
         diameter={100}

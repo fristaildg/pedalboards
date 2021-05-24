@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { PageContext } from '../../context/pageContext'
 import AudioPlayer from '../AudioPlayer'
 import styled from 'styled-components'
 import UploadAudioInput from '../UploadAudioInput'
@@ -34,23 +33,24 @@ const UploadWrapper = styled.div`
 
 const AudioSamples = ({ boardId }: AudioSamplesProps) => {
   const { board, loading } = useBoard(boardId)
-  const { isPublic } = useContext(PageContext)
   
   if (!board && loading) return <Text>Loading audio samples...</Text>
   const { audioSamples } = board
 
-  const canUpload = !isPublic && audioSamples.length < 2
+  const canUpload = audioSamples.length < 2
 
   return (
     <AudioSamplesWrapper>
       <div>
         <Heading tag='h2'>Audio Samples</Heading>
         <Spacer />
-        <UploadWrapper>
-          {canUpload && <Text>Upload up to 2 audio files (5MB max each)</Text>}
-          <Spacer />
-          {canUpload && <UploadAudioInput />}
-        </UploadWrapper>
+        {canUpload && (
+          <UploadWrapper>
+            <Text>Upload up to 2 audio files (5MB max each)</Text>
+            <Spacer />
+            <UploadAudioInput />
+          </UploadWrapper>
+        )}
       </div>
       <AudioPlayerList>
         {audioSamples && audioSamples.length > 0 && audioSamples.map((audio: AudioFileObject, index: number) => (
