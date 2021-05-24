@@ -17,6 +17,7 @@ export type BoardDocument = {
   NO_ID_FIELD?: string
   name?: string
   pedals?: Pedal[]
+  audioSamples?: AudioFileObject[]
 }
 
 export type Children = React.ReactNode | React.ReactNode[] | undefined

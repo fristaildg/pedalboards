@@ -29,18 +29,20 @@ const UserBoard = () => {
   const router = useRouter()
   const { id } = router.query
 
-  if (!id) return null
-
   return (
     <PageContextProvider value={{ isPublic: true }}>
       <UserBoardWrapper>
         <ZoomControlWrapper>
           <ZoomControl />
         </ZoomControlWrapper>
-        <PublicBoard boardId={id as string} />
+        {id && (
+          <PublicBoard boardId={id as string} />
+        )}
       </UserBoardWrapper>
     </PageContextProvider>
   )
 }
+
+
 
 export default UserBoard

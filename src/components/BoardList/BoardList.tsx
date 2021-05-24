@@ -1,10 +1,7 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
 import { COLORS, Text } from '../../common'
 import { BoardDocument } from '../../common/types'
-import { setBoard } from '../../redux/board'
 import { useGoToBoard } from '../Board'
 
 type BoardListProps = {

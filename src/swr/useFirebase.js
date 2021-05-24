@@ -41,12 +41,27 @@ export const useBoard = (boardId) => {
   }
 }
 
+export const usePublicBoard = (boardId) => {
+  const boardRef = useFirestore()
+    .collection('boards')
+    .doc(boardId)
+  const { status, data: board } = useFirestoreDocData(boardRef)
+  const loading = status === 'loading'
+  const error = status !== 'success' && status !== 'loading'
+
+  return {
+    board,
+    loading,
+    error
+  }
+}
+
 export const useAudioFiles = (boardId) => {
   const { updateBoard, board } = useBoard(boardId)
   const [loading, setLoading] = useState(false)
   const [deleteStatus, setDeleteStatus] = useState('idle')
   const storageRef = useStorage().ref()
-  const audioSamples = board.audioSamples || []
+  const audioSamples = board?.audioSamples || []
 
   const uploadFile = async (blob) => {
     try {

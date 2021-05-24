@@ -111,7 +111,7 @@ const AudioPlayer = ({ src, name }: AudioPlayerProps) => {
       <PlayerOptions>
         <AudioName>{name}</AudioName>
         <DeleteIconButton
-          src='./icons/trash.svg'
+          src='/icons/trash.svg'
           onClick={openDeleteModal}
         />
       </PlayerOptions>
