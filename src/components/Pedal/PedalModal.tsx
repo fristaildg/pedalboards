@@ -39,7 +39,7 @@ const KnobGroup = styled.div`
   align-items: center;
 `
 
-const EmptyKnobsContainer = styled(({ isPublic }) => (
+const EmptyKnobsContainer = ({ isPublic }:{isPublic: boolean}) => (
   !isPublic ? (
     <>
       <PedalKnob isDisabled label="pedal knob" />
@@ -53,7 +53,7 @@ const EmptyKnobsContainer = styled(({ isPublic }) => (
   ) : (
     <Text>No knobs have been added to this pedal yet</Text>
   )
-))``
+)
 
 const PedalModal = ({ pedal }: PedalModalProps) => {
   const inputRef = useRef<HTMLInputElement>(null)

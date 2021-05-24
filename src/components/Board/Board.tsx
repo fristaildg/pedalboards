@@ -54,7 +54,7 @@ const Board = ({ className }: BoardProps) => {
   const fitScreen = useSelector(fitScreenSelector)
   const [reorderedPedals, setReorderedPedals] = useState()
   const [saving, setSaving] = useState(false)
-  const { updateBoard, board } = useBoard()
+  const { updateBoard } = useBoard()
   const [alertVisible, setAlertVisible] = useState(false)  
   
   useEffect(() => {

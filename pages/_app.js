@@ -17,7 +17,7 @@ import { COLORS, SIZES, Spacer } from '../src/common'
 const auth0Credentials = {
   domain: 'mtg-ts.auth0.com',
   clientId: 'zFWg56iAlWCvxNdk4S4GEO7j22X8Jfmb',
-  redirectUri: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://pedalboards-fristaildg.vercel.app'
+  redirectUri: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dashboard' : 'https://pedalboards-fristaildg.vercel.app/dashboard'
 }
 
 

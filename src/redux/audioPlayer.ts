@@ -35,8 +35,10 @@ const audioPlayerSlice = createSlice({
     },
     setAlertMessage(state, action) {
       const messages: {[key: string]: string} = {
-        succeeded: 'File deleted successfully',
-        errored: 'There was an error trying to delete the file'
+        delete_succeeded: 'File deleted successfully',
+        delete_errored: 'There was an error trying to delete the file',
+        upload_succeeded: 'File uploaded succesfully',
+        upload_errored: 'There was an error trying to upload this file',
       }
 
       state.alert.message = messages[action.payload]

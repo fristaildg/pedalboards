@@ -1,12 +1,13 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## TODO
- - Fix public board not working
- - - Fix Pedal Modal (knobs are not disabled and modal cannot be closed)
- - - Fix AudioSamples 
+ - Fix Delete audio alert message
+ ✔️ Fix public board not working
+   ✔️ Fix Pedal Modal (knobs are not disabled and modal cannot be closed)
+   ✔️ Fix AudioSamples 
  ✔️ Restrict amount of audio files / max weight
- - Remove trash icon from audio player if isPublic
- - Move Dashboard to it's own page
+ ✔️ Remove trash icon from audio player if isPublic
+ ✔️ Move Dashboard to it's own page
  - Loading animation / icon / skeleton
  - create route-guards or equivalent for nextjs routes
  - Add Custom Pedal feature

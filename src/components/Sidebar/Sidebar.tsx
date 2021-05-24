@@ -41,14 +41,14 @@ const AsideListItem = styled.li<AsideListItemProps>`
 const Sidebar = ({ className }: SidebarProps) => {
   const router = useRouter()
 
-  const goToHome = () => {
-    router.push('/')
+  const goToDashboard = () => {
+    router.push('/dashboard')
   }
 
   return (
     <StyledAside className={className}>
       <AsideList>
-        <AsideListItem horizontal onClick={goToHome}>
+        <AsideListItem horizontal onClick={goToDashboard}>
           <Icon src='/icons/arrow-left.svg' />
           <Spacer />
           <Text>Go to dashboard</Text>

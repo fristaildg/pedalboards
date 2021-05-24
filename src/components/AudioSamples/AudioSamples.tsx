@@ -37,7 +37,7 @@ const AudioSamples = ({ boardId }: AudioSamplesProps) => {
   if (!board && loading) return <Text>Loading audio samples...</Text>
   const { audioSamples } = board
 
-  const canUpload = audioSamples.length < 2
+  const canUpload = audioSamples && audioSamples.length < 2
 
   return (
     <AudioSamplesWrapper>

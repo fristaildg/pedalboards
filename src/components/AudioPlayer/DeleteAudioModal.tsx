@@ -13,9 +13,11 @@ const DeleteAudioModal = () => {
 
   const handleDeleteFile = async () => {
     await deleteFile(name)
-    dispatch(toggleAlert())
-    dispatch(setAlertMessage(deleteStatus))
-    dispatch(toggleDeleteAudioModal(name))
+    if (!deleteLoading) {
+      dispatch(setAlertMessage(deleteStatus))
+      dispatch(toggleAlert())
+      dispatch(toggleDeleteAudioModal(name))
+    }
   }
 
 

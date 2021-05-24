@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useFirestore, useFirestoreCollectionData, useFirestoreDocData, useStorage } from 'reactfire'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useSelector } from 'react-redux'
@@ -59,13 +59,15 @@ export const usePublicBoard = (boardId) => {
 export const useAudioFiles = (boardId) => {
   const { updateBoard, board } = useBoard(boardId)
   const [loading, setLoading] = useState(false)
-  const [deleteStatus, setDeleteStatus] = useState('idle')
+  const uploadStatus = useRef(null)
+  const deleteStatus = useRef(null)
   const storageRef = useStorage().ref()
   const audioSamples = board?.audioSamples || []
 
   const uploadFile = async (blob) => {
     try {
       setLoading(true)
+      uploadStatus.current = 'upload_succeeded'
       const file = await storageRef.child(`audio-samples/${blob.name}`).put(blob)
       const url = await file.ref.getDownloadURL()
       const name = blob.name
@@ -76,6 +78,7 @@ export const useAudioFiles = (boardId) => {
       updateBoard({ audioSamples: [...audioSamples, fileObj] })
     } catch (error) {
       console.log(error)
+      uploadStatus.current = 'upload_errored'
     } finally {
       setLoading(false)
     }
@@ -84,12 +87,12 @@ export const useAudioFiles = (boardId) => {
   const deleteFile = async (fileName) => {
     try {
       setLoading(true)
+      deleteStatus.current = 'delete_succeeded'
       await storageRef.child(`audio-samples/${fileName}`).delete()
       await updateBoard({ audioSamples: audioSamples.filter(sample => sample.name !== fileName) })
-      setDeleteStatus('succeeded')
     } catch (error) {
       console.log(error)
-      setDeleteStatus('errored')
+      deleteStatus.current = 'delete_errored'
     } finally {
       setLoading(false)
       // setDeleteStatus('idle')
@@ -100,6 +103,7 @@ export const useAudioFiles = (boardId) => {
     uploadFile,
     deleteFile,
     loading,
-    deleteStatus
+    deleteStatus: deleteStatus.current,
+    uploadStatus: uploadStatus.current,
   }
 }

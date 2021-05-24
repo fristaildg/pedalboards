@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { Text, Input, COLORS, FONTS, SIZES } from '../../common'
 import { useAudioFiles } from '../../swr/useFirebase'
+import { toggleAlert, setAlertMessage } from '../../redux/audioPlayer'
 
 const UploadInput = styled(Input)`
   input::file-selector-button {
@@ -22,18 +24,21 @@ const UploadInput = styled(Input)`
 const sizeLimit = 5000
 
 const UploadAudioInput = () => {
-  const { uploadFile, loading } = useAudioFiles()
+  const { uploadFile, loading, uploadStatus } = useAudioFiles()
   const [ isTooLarge, setIsTooLarge ] = useState(false)
+  const dispatch = useDispatch()
   const helperText = isTooLarge ? 'This audio is too large to upload' : undefined
 
-  const handleFileUpload = (event: any) => {
+  const handleFileUpload = async (event: any) => {
     const file = event.target.files[0]
     const fileSize = Math.round((file.size / 1024))
     console.log(file)
     if (fileSize > sizeLimit) {
       setIsTooLarge(true)
     } else {
-      uploadFile(file)
+      await uploadFile(file)
+      dispatch(setAlertMessage(uploadStatus))
+      dispatch(toggleAlert())
     }
   }
 

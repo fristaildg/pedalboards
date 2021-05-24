@@ -3,6 +3,7 @@ import { COLORS, SIZES } from '../src/common'
 import Board from '../src/components/Board'
 import Sidebar from '../src/components/Sidebar'
 import { PageContextProvider } from '../src/context/pageContext'
+import withProtectedRoute from '../src/utils/withProtectedRoute'
 
 const PageWrapper = styled.div`
   display: flex;
@@ -23,13 +24,15 @@ const StyledBoard = styled(Board)`
   min-height: ${`calc(100vh - ${SIZES.HEADER_HEIGHT}px)`};
 `
 
-const MyBoard = () => (
-  <PageContextProvider value={{ isPublic: false }}>
-    <PageWrapper>
-      <StyledSidebar />
-      <StyledBoard />
-    </PageWrapper>
-  </PageContextProvider>
-)
+const MyBoard = () => {
+  return (
+    <PageContextProvider value={{ isPublic: false }}>
+      <PageWrapper>
+        <StyledSidebar />
+        <StyledBoard />
+      </PageWrapper>
+    </PageContextProvider>
+  )
+}
 
-export default MyBoard
+export default withProtectedRoute(MyBoard)
