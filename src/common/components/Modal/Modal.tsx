@@ -77,7 +77,7 @@ const ModalComp = ({ isOpen, children, onCloseClick }: ModalProps) => {
                   {...contentWrapperAnimation}
                 >
                   {!!onCloseClick && (
-                    <CloseIcon src='/icons/close.svg' onClick={onCloseClick} />
+                    <CloseIcon icon='close' onClick={onCloseClick} />
                   )}
                   <Spacer spacingY={5}/>
                   <Content>

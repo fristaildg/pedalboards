@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { COLORS, SIZES, Spacer, SubHeading, Text } from '../../common'
+import { COLORS, Spacer, SubHeading, Text } from '../../common'
 import SVG from 'react-inlinesvg'
 
 const StyledContainer = styled.div`

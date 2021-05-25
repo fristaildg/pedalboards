@@ -1,9 +1,8 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Pedal as PedalType } from '../../common/types'
 import { zoomSelector } from '../../redux/selectors'
-import { togglePedalModal } from '../../redux/pedal'
 import PedalControls from './PedalControls'
 import PedalModal from './PedalModal'
 
@@ -47,15 +46,10 @@ const PedalImage = styled.img`
 
 const Pedal = ({ pedal, controls = true }: PedalProps) => {
   const zoom = useSelector(zoomSelector)
-  const dispatch = useDispatch()
 
   if (!pedal) return null
 
   const { Image, Width, Height, Name, id } = pedal
-
-  const handlePedalClick = () => {
-    dispatch(togglePedalModal(Name))
-  }
 
   return (
     <>
@@ -63,9 +57,8 @@ const Pedal = ({ pedal, controls = true }: PedalProps) => {
         pedalWidth={Width}
         pedalHeight={Height}
         zoom={zoom}
-        onClick={handlePedalClick}
       >
-        <PedalControls pedalId={id} disabled={!controls} />
+        <PedalControls pedalName={Name} pedalId={id} disabled={!controls} />
         <PedalImage
           src={`${imagesLocation}/${Image}`}
           alt={Name}

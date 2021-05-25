@@ -60,9 +60,9 @@ const PedalboardName = ({ name }: PedalboardNameProps) => {
         ref={editInputRef}
       />
       <Spacer />
-      <Icon src='/icons/save.svg' onClick={handleSaveClick} />
+      <Icon icon='save' onClick={handleSaveClick} />
       <Spacer />
-      <Icon src='/icons/close.svg' onClick={toggleIsEditing} />
+      <Icon icon='close' onClick={toggleIsEditing} />
     </EditInputWrapper>
   )
 
@@ -72,7 +72,7 @@ const PedalboardName = ({ name }: PedalboardNameProps) => {
         {name}
       </Heading>
       <Spacer />
-      <EditIcon src='/icons/pencil.svg' />
+      <EditIcon icon='pencil' />
     </BoardNameWrapper>
   )
 }

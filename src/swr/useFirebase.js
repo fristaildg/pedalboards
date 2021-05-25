@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo } from 'react'
+import { useRef, useState } from 'react'
 import { useFirestore, useFirestoreCollectionData, useFirestoreDocData, useStorage } from 'reactfire'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ export const useBoards = () => {
   const boardsRef = useFirestore()
     .collection('boards')  
   const userBoardsRef = boardsRef.where('ownerId', '==', user.sub)
-  const { status, data: boards } = useMemo(() => useFirestoreCollectionData(userBoardsRef), [userBoardsRef])
+  const { status, data: boards } = useFirestoreCollectionData(userBoardsRef)
   const loading = status === 'loading'
   const error = status !== 'success' && status !== 'loading'
   const createBoard = (newBoardData) => boardsRef.add(newBoardData)

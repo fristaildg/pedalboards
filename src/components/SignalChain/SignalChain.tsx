@@ -24,19 +24,19 @@ const SignalChain = ({ chain }: SignalChainProps) => {
       <Text fontStyle="sans-serif">Current signal chain:</Text>
       <Spacer />
       <PedalsWrapper>
-        <Icon src='/icons/music.svg' width={40} color={COLORS.WHITE} />
+        <Icon icon='music' width={40} color={COLORS.WHITE} />
         <Spacer />
         {chain.map(({ id, Name }) => 
           <React.Fragment key={id}>
-            <Icon src='/icons/arrow-right.svg' />
+            <Icon icon='arrow-right' />
             <Spacer />
             <Text>{Name}</Text>
             <Spacer />
           </React.Fragment>
         )}
-        <Icon src='/icons/arrow-right.svg' />
+        <Icon icon='arrow-right' />
         <Spacer />
-        <Icon src='/icons/speaker.svg' width={40} color={COLORS.WHITE} />
+        <Icon icon='speaker' width={40} color={COLORS.WHITE} />
       </PedalsWrapper>
     </SignalChainWrapper>
   )

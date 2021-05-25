@@ -35,8 +35,8 @@ const AudioSamples = ({ boardId }: AudioSamplesProps) => {
   const { board, loading } = useBoard(boardId)
   
   if (!board && loading) return <Text>Loading audio samples...</Text>
-  const { audioSamples } = board
 
+  const { audioSamples = [] } = board
   const canUpload = audioSamples && audioSamples.length < 2
 
   return (

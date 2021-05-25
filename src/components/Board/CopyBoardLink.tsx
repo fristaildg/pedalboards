@@ -49,7 +49,7 @@ const CopyBoardLink = ({ boardId }: CopyBoardLinkProps) => {
     <Wrapper>
       <Link>{boardLink}</Link>
       <CopyButton onClick={handleCopyClick}>
-        <Icon src="/icons/copy.svg" />
+        <Icon icon="copy" />
         <Text>Copy Link</Text>
       </CopyButton>
       <Alert isOpen={showAlert} onTimeout={handleAlertTimeout} message="Link copied!" />

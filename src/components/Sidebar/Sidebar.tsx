@@ -49,7 +49,7 @@ const Sidebar = ({ className }: SidebarProps) => {
     <StyledAside className={className}>
       <AsideList>
         <AsideListItem horizontal onClick={goToDashboard}>
-          <Icon src='/icons/arrow-left.svg' />
+          <Icon icon='arrow-left' />
           <Spacer />
           <Text>Go to dashboard</Text>
         </AsideListItem>

@@ -61,7 +61,7 @@ const PedalKnob = ({ label = 'unnamed knob', defaultValue, onRemoveClick, onChan
 
   return (
     <KnobWrapper disabled={isDisabled || isPublic}>
-      {!isPublic && <RemoveIcon src='/icons/trash.svg' onClick={onRemoveClick} />}
+      {!isPublic && <RemoveIcon icon='trash' onClick={onRemoveClick} />}
       <Knob
         diameter={100}
         value={value}

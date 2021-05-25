@@ -114,14 +114,14 @@ const AudioPlayer = ({ src, name }: AudioPlayerProps) => {
         <AudioName>{name}</AudioName>
         {!isPublic && (
           <DeleteIconButton
-            src='/icons/trash.svg'
+            icon='trash'
             onClick={openDeleteModal}
           />
         )}
       </PlayerOptions>
       <PlayerUI>
         <Icon
-          src={isPlaying ? '/icons/pause.svg' : '/icons/play.svg'}
+          icon={isPlaying ? 'pause' : 'play'}
           onClick={toggleAudio}
         />
         <Spacer />
