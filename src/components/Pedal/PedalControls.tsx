@@ -5,18 +5,18 @@ import styled from 'styled-components'
 import { Icon } from '../../common'
 
 export type PedalControlsProps = {
-  name: string
+  pedalId: string
   className?: string
   disabled?: boolean
 }
 
 const ControlsWrapper = styled.div``
 
-const PedalControls = ({ name, className, disabled }: PedalControlsProps) => {
+const PedalControls = ({ pedalId, className, disabled }: PedalControlsProps) => {
   const dispatch = useDispatch()
 
   const handleIconButtonClick = () => {
-    dispatch(removePedal(name))
+    dispatch(removePedal(pedalId))
   }
 
   return disabled ? null : (

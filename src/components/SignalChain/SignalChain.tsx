@@ -19,8 +19,6 @@ const PedalsWrapper = styled.div`
 `
 
 const SignalChain = ({ chain }: SignalChainProps) => {
-  const pedalNames = useMemo(() => chain.map(pedal => pedal.Name), [chain])
-
   return (
     <SignalChainWrapper>
       <Text fontStyle="sans-serif">Current signal chain:</Text>
@@ -28,11 +26,11 @@ const SignalChain = ({ chain }: SignalChainProps) => {
       <PedalsWrapper>
         <Icon src='/icons/music.svg' width={40} color={COLORS.WHITE} />
         <Spacer />
-        {pedalNames.map(pedal => 
-          <React.Fragment key={pedal}>
+        {chain.map(({ id, Name }) => 
+          <React.Fragment key={id}>
             <Icon src='/icons/arrow-right.svg' />
             <Spacer />
-            <Text>{pedal}</Text>
+            <Text>{Name}</Text>
             <Spacer />
           </React.Fragment>
         )}

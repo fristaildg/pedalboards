@@ -11,5 +11,7 @@ export * from './components/Slider'
 export { Modal, ModalHeader, ModalBody, ModalFooter } from './components/Modal'
 export { Alert } from './components/Alert'
 export { Popover } from './components/Popover'
+export { Animation } from './components/Animation'
+export { Spinner } from './components/Spinner'
 
 export type { ModalProps } from './components/Modal'

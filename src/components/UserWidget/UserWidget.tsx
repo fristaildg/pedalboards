@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 import styled from 'styled-components'
-import { COLORS, Spacer, Text } from '../../common'
+import { COLORS, Spacer, Spinner, Text } from '../../common'
 import LoginButton from '../LoginButton'
 import UserPopover from './UserPopover'
 import { toggleUserPopover } from '../../redux/ui'
@@ -37,7 +37,7 @@ const UserWidget = () => {
 
   return (
     <UserWidgetWrapper>
-      {isLoading && <Text>Loading...</Text>}
+      {isLoading && <Spinner />}
       {!isLoading && !user && <LoginButton />}
       {user && (
         <UserPopover>

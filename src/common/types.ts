@@ -11,6 +11,7 @@ export type Pedal = {
   Name: string
   Width: number
   knobs?: PedalKnobs
+  id: string
 }
 
 export type BoardDocument = {

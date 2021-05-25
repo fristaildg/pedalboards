@@ -51,7 +51,7 @@ const Pedal = ({ pedal, controls = true }: PedalProps) => {
 
   if (!pedal) return null
 
-  const { Image, Width, Height, Name, Brand } = pedal
+  const { Image, Width, Height, Name, id } = pedal
 
   const handlePedalClick = () => {
     dispatch(togglePedalModal(Name))
@@ -65,7 +65,7 @@ const Pedal = ({ pedal, controls = true }: PedalProps) => {
         zoom={zoom}
         onClick={handlePedalClick}
       >
-        <PedalControls name={Name} disabled={!controls} />
+        <PedalControls pedalId={id} disabled={!controls} />
         <PedalImage
           src={`${imagesLocation}/${Image}`}
           alt={Name}

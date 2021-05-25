@@ -55,7 +55,7 @@ const boardSlice = createSlice({
   }
 })
 
-const getPedalIndex = (state: BoardState, pedalName: string) => state.pedals.findIndex((pedal: Pedal) => pedal.Name === pedalName)
+const getPedalIndex = (state: BoardState, pedalId: string) => state.pedals.findIndex((pedal: Pedal) => pedal.id === pedalId)
 
 export const {
   addPedal,

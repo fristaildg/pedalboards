@@ -87,7 +87,7 @@ const Board = ({ className }: BoardProps) => {
             pedalsLength={pedals.length}
           >
             {pedals.map((pedal: PedalType) => (
-              <Pedal key={pedal.Name} pedal={pedal} />
+              <Pedal key={pedal.id} pedal={pedal} />
             ))}
           </BoardSurface>
           <Spacer />
