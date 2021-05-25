@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { uniqueId } from 'lodash'
 import { Pedal } from '../common/types'
 
 export type BoardState = {
@@ -23,7 +24,7 @@ const boardSlice = createSlice({
       state.pedals = action.payload.pedals || []
     },
     addPedal(state, action) {
-      const newPedal = { ...action.payload, id: action.payload.Name }
+      const newPedal = { ...action.payload, id: `${uniqueId(action.payload.Name)}` }
       state.pedals.push(newPedal)
     },
     removePedal(state, action) {
