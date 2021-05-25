@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useMemo } from 'react'
 import { useFirestore, useFirestoreCollectionData, useFirestoreDocData, useStorage } from 'reactfire'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ export const useBoards = () => {
   const boardsRef = useFirestore()
     .collection('boards')  
   const userBoardsRef = boardsRef.where('ownerId', '==', user.sub)
-  const { status, data: boards } = useFirestoreCollectionData(userBoardsRef)
+  const { status, data: boards } = useMemo(() => useFirestoreCollectionData(userBoardsRef), [userBoardsRef])
   const loading = status === 'loading'
   const error = status !== 'success' && status !== 'loading'
   const createBoard = (newBoardData) => boardsRef.add(newBoardData)
@@ -77,7 +77,6 @@ export const useAudioFiles = (boardId) => {
       }
       updateBoard({ audioSamples: [...audioSamples, fileObj] })
     } catch (error) {
-      console.log(error)
       uploadStatus.current = 'upload_errored'
     } finally {
       setLoading(false)
@@ -91,7 +90,6 @@ export const useAudioFiles = (boardId) => {
       await storageRef.child(`audio-samples/${fileName}`).delete()
       await updateBoard({ audioSamples: audioSamples.filter(sample => sample.name !== fileName) })
     } catch (error) {
-      console.log(error)
       deleteStatus.current = 'delete_errored'
     } finally {
       setLoading(false)

@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 import styled from 'styled-components'
 import { COLORS, Spacer, Text } from '../../common'
 import LoginButton from '../LoginButton'
 import UserPopover from './UserPopover'
+import { toggleUserPopover } from '../../redux/ui'
 
 const UserWidgetWrapper = styled.div`
   padding: 20px;
@@ -27,14 +29,10 @@ const UserName = styled(Text)`
 
 const UserWidget = () => {
   const { user, isLoading } = useAuth0()
-  const [popoverVisible, setpopoverVisible] = useState(false)
+  const dispatch = useDispatch()
 
   const togglePopover = () => {
-    setpopoverVisible(prevState => !prevState)
-  }
-
-  const closePopover = () => {
-    if (popoverVisible) setpopoverVisible(false)
+    dispatch(toggleUserPopover())
   }
 
   return (
@@ -42,10 +40,7 @@ const UserWidget = () => {
       {isLoading && <Text>Loading...</Text>}
       {!isLoading && !user && <LoginButton />}
       {user && (
-        <UserPopover
-          visible={popoverVisible}
-          onClickOutside={closePopover}  
-        >
+        <UserPopover>
           <User onClick={togglePopover}>
             <Avatar src={user.picture} />
             <Spacer />

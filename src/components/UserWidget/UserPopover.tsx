@@ -1,14 +1,15 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { Children } from '../../common/types'
 import { COLORS, Popover, Text } from '../../common'
+import { closeUserPopover } from '../../redux/ui'
 import styled from 'styled-components'
 import LoginButton from '../LoginButton'
+import { userPopoverSelector } from '../../redux/selectors'
 
 type UserPopoverProps = {
   children: Children
-  visible: boolean
-  onClickOutside: () => void
 }
 
 const StyledPopover = styled(Popover)`
@@ -37,21 +38,36 @@ const PopoverItem = styled.div`
   }
 `
 
-const UserPopover = ({ children, visible, onClickOutside }: UserPopoverProps) => {
+const UserPopover = ({ children }: UserPopoverProps) => {
   const { push } = useRouter()
+  const dispatch = useDispatch()
+  const { isOpen } = useSelector(userPopoverSelector)
+
+  const closePopover = () => {
+    dispatch(closeUserPopover())
+  }
 
   const goToProfile = () => {
+    closePopover()
     push('/user')
+  }
+
+  const goToDashboard = () => {
+    closePopover()
+    push('/dashboard')
   }
 
   return (
     <StyledPopover
-      onClickOutside={onClickOutside}
-      visible={visible}
+      onClickOutside={closePopover}
+      visible={isOpen}
       content={(
         <PopoverContent>
+          <PopoverItem onClick={goToDashboard}>
+            <Text>Dashboard</Text>
+          </PopoverItem>
           <PopoverItem onClick={goToProfile}>
-            <Text>Go to profile</Text>
+            <Text>Profile</Text>
           </PopoverItem>
           <PopoverItem>
             <LoginButton />
