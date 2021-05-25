@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { removePedal } from '../../redux/board'
 import { togglePedalModal } from '../../redux/pedal'
 import styled from 'styled-components'
 import { Icon, Spacer } from '../../common'
+import { PageContext } from '../../context/pageContext'
 
 export type PedalControlsProps = {
   pedalId: string
   pedalName: string
   className?: string
-  disabled?: boolean
 }
 
 const ControlsWrapper = styled.div`
@@ -18,22 +18,29 @@ const ControlsWrapper = styled.div`
   justify-content: flex-end;
 `
 
-const PedalControls = ({ pedalId, className, disabled, pedalName }: PedalControlsProps) => {
+const PedalControls = ({ pedalId, className, pedalName }: PedalControlsProps) => {
   const dispatch = useDispatch()
+  const { isPublic } = useContext(PageContext)
 
   const handleConfigClick = () => {
-    dispatch(togglePedalModal(pedalName))
+    dispatch(togglePedalModal({ pedalName, pedalId }))
   }
   
   const handleDeleteClick = () => {
     dispatch(removePedal(pedalId))
   }
 
-  return disabled ? null : (
+  return (
     <ControlsWrapper className={className}>
-      <Icon icon='cog' onClick={handleConfigClick} />
-      <Spacer />
-      <Icon icon='trash' onClick={handleDeleteClick} />
+      {isPublic ? (
+        <Icon icon='more' onClick={handleConfigClick} width={30} />
+      ) : (
+        <>
+          <Icon icon='cog' onClick={handleConfigClick} />
+          <Spacer />
+          <Icon icon='trash' onClick={handleDeleteClick} />
+        </>
+      )}
     </ControlsWrapper>
   )
 }

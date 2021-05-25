@@ -38,20 +38,12 @@ const boardSlice = createSlice({
       state.boardName = action.payload
     },
     addPedalKnobs(state, action) {
-      const currentPedal = action.payload.pedalName
+      const currentPedal = action.payload.pedalId
       const knobs = action.payload.knobs
       const pedalIndex = getPedalIndex(state, currentPedal)
 
       state.pedals[pedalIndex].knobs = knobs
     },
-    addPedalKnob(state, action) {
-      const currentPedal = action.payload.pedalName
-      const pedalIndex = getPedalIndex(state, currentPedal)
-      let knobs = state.pedals[pedalIndex].knobs
-      const knob = action.payload.knob
-
-      state.pedals[pedalIndex].knobs = {...knobs, knob}
-    }
   }
 })
 
@@ -64,6 +56,5 @@ export const {
   setBoardName,
   setBoard,
   addPedalKnobs,
-  addPedalKnob
 } = boardSlice.actions
 export default boardSlice.reducer

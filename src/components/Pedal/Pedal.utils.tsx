@@ -1,7 +1,6 @@
 import { useReducer } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { pedalModalSelector } from '../../redux/selectors'
-import { addPedalKnobs, addPedalKnob } from '../../redux/board'
+import { useDispatch } from 'react-redux'
+import { addPedalKnobs } from '../../redux/board'
 import { Pedal, PedalKnobs } from '../../common/types'
 
 const knobsReducer = (state: { knobs: PedalKnobs }, action: any) => {
@@ -24,7 +23,6 @@ export const useKnobs = (pedal: Pedal) => {
   // @ts-ignore
   const [{ knobs }, dispatch] = useReducer(knobsReducer, { knobs: pedal.knobs || {} })
   const storeDispatch = useDispatch()
-  const { pedalName } = useSelector(pedalModalSelector)
 
   const addKnob = (knob: string) => {
     dispatch({
@@ -52,7 +50,7 @@ export const useKnobs = (pedal: Pedal) => {
   }
 
   const saveKnobs = () => {
-    storeDispatch(addPedalKnobs({knobs, pedalName}))
+    storeDispatch(addPedalKnobs({ knobs, pedalId: pedal.id }))
   }
 
   return {

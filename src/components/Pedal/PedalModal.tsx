@@ -57,7 +57,7 @@ const EmptyKnobsContainer = ({ isPublic }:{isPublic: boolean}) => (
 
 const PedalModal = ({ pedal }: PedalModalProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
-  const { isOpen, pedalName } = useSelector(pedalModalSelector)
+  const { isOpen, pedalId } = useSelector(pedalModalSelector)
   const dispatch = useDispatch()
   const { knobs, addKnob, removeKnob, saveKnobs, updateKnobValue } = useKnobs(pedal)
   const [alertVisible, setAlertVisible] = useState(false)
@@ -85,7 +85,7 @@ const PedalModal = ({ pedal }: PedalModalProps) => {
   }
 
   return (
-    <Modal isOpen={isOpen && pedal.Name === pedalName} onCloseClick={handleCloseClick}>
+    <Modal isOpen={isOpen && pedal.id === pedalId} onCloseClick={handleCloseClick}>
       <StyledModalHeader>
         <HeaderInfo>
           <Heading>{pedal?.Name}</Heading>

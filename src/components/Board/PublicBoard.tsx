@@ -33,14 +33,16 @@ const PublicBoard = ({ boardId }: PublicBoardProps) => {
         <>
           <BoardSurface as={'ul'} fitScreen={fitScreen}>
             {pedals.map((pedal: PedalType) => (
-              <Pedal key={pedal.Name} pedal={pedal} controls={false} />
+              <Pedal key={pedal.id} pedal={pedal} />
             ))}
           </BoardSurface>
           <SignalChain chain={pedals} />
         </>
       )}
       <Spacer spacing={20} />
-      <PublicAudioSamples samples={audioSamples} />
+      {audioSamples && (
+        <PublicAudioSamples samples={audioSamples} />
+      )}
     </BoardWrapper>
   )
 }

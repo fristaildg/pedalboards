@@ -20,7 +20,6 @@ type ImageProps = {
 }
 
 const ImageWrapper = styled.div<ImageProps>`
-  cursor: pointer;
   ${({ pedalWidth, zoom}) => `
     width: ${pedalWidth * zoom}px;
   `}
@@ -44,7 +43,7 @@ const PedalImage = styled.img`
   height: auto;
 `
 
-const Pedal = ({ pedal, controls = true }: PedalProps) => {
+const Pedal = ({ pedal }: PedalProps) => {
   const zoom = useSelector(zoomSelector)
 
   if (!pedal) return null
@@ -58,7 +57,7 @@ const Pedal = ({ pedal, controls = true }: PedalProps) => {
         pedalHeight={Height}
         zoom={zoom}
       >
-        <PedalControls pedalName={Name} pedalId={id} disabled={!controls} />
+        <PedalControls pedalName={Name} pedalId={id} />
         <PedalImage
           src={`${imagesLocation}/${Image}`}
           alt={Name}
