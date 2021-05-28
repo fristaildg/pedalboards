@@ -8,7 +8,7 @@ import { useOnClickOutside } from '../../../utils/hooks'
 
 type PopoverProps = {
   children: Children
-  content: Children
+  trigger: Children
   className?: string
   visible: boolean
   onClickOutside?: () => void
@@ -33,7 +33,7 @@ const popOverContentAnimation = {
   transition: { bounce: 0 }
 }
 
-const PopoverComp = ({ children, content, className, visible, onClickOutside }: PopoverProps) => {
+const PopoverComp = ({ children, trigger, className, visible, onClickOutside }: PopoverProps) => {
   const [referenceElement, setReferenceElement] = useState(null)
   const [popperElement, setPopperElement] = useState(null)
   const { styles, attributes } = usePopper(referenceElement, popperElement)
@@ -48,13 +48,13 @@ const PopoverComp = ({ children, content, className, visible, onClickOutside }: 
   useOnClickOutside(clickOutsideRef, handleClickOutside)
   
   return (
-    <div ref={clickOutsideRef}>
+    <>
       <div
         ref={setReferenceElement as unknown as typeof referenceElement}
         style={{display: 'inline-block'}}
         className={className}
       >
-        {children}
+        {trigger}
       </div>
       <PopoverContentWrapper
         ref={setPopperElement as unknown as typeof popperElement}
@@ -62,14 +62,14 @@ const PopoverComp = ({ children, content, className, visible, onClickOutside }: 
         {...attributes.popper}
         >
         <AnimatePresence>
-          {visible && content && (
-            <PopoverContent {...popOverContentAnimation}>
-              {content}
+          {visible && children && (
+            <PopoverContent {...popOverContentAnimation} ref={clickOutsideRef}>
+              {children}
             </PopoverContent>
           )}
         </AnimatePresence>
       </PopoverContentWrapper>
-    </div>
+    </>
   )
 }
 

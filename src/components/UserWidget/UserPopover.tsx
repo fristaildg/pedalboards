@@ -9,7 +9,7 @@ import LoginButton from '../LoginButton'
 import { userPopoverSelector } from '../../redux/selectors'
 
 type UserPopoverProps = {
-  children: Children
+  trigger: Children
 }
 
 const StyledPopover = styled(Popover)`
@@ -38,7 +38,7 @@ const PopoverItem = styled.div`
   }
 `
 
-const UserPopover = ({ children }: UserPopoverProps) => {
+const UserPopover = ({ trigger }: UserPopoverProps) => {
   const { push } = useRouter()
   const dispatch = useDispatch()
   const { isOpen } = useSelector(userPopoverSelector)
@@ -61,20 +61,19 @@ const UserPopover = ({ children }: UserPopoverProps) => {
     <StyledPopover
       onClickOutside={closePopover}
       visible={isOpen}
-      content={(
-        <PopoverContent>
-          <PopoverItem onClick={goToDashboard}>
-            <Text>Dashboard</Text>
-          </PopoverItem>
-          <PopoverItem onClick={goToProfile}>
-            <Text>Profile</Text>
-          </PopoverItem>
-          <PopoverItem>
-            <LoginButton />
-          </PopoverItem>
-        </PopoverContent>
-      )}>
-      {children}
+      trigger={trigger}
+    >
+      <PopoverContent>
+        <PopoverItem onClick={goToDashboard}>
+          <Text>Dashboard</Text>
+        </PopoverItem>
+        <PopoverItem onClick={goToProfile}>
+          <Text>Profile</Text>
+        </PopoverItem>
+        <PopoverItem>
+          <LoginButton />
+        </PopoverItem>
+      </PopoverContent>
     </StyledPopover>
   )
 }

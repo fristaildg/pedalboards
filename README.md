@@ -1,8 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## TODO
- - Fix Zoom slider (it does not go to the end of the bar)
- - Fix ui/closeUserPopover action being called every time
+ - Work on Responsive styles
  - Fix Delete audio alert message
  - - Add more text and fix styling on delete audio modal
  - Loading animation / icon / skeleton
@@ -14,6 +13,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
  - Add more info to the welcome page
  - Figure out how to add more pedals to the database / how to manage pedals database
  - Add user page
+ - Fix Zoom slider in PublicBoard (it does not go to the end of the bar)
 
 ## Getting Started
 

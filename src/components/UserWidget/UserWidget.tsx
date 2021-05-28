@@ -40,13 +40,13 @@ const UserWidget = () => {
       {isLoading && <Spinner />}
       {!isLoading && !user && <LoginButton />}
       {user && (
-        <UserPopover>
+        <UserPopover trigger={(
           <User onClick={togglePopover}>
             <Avatar src={user.picture} />
             <Spacer />
             <UserName>{user.nickname}</UserName>
           </User>
-        </UserPopover>
+        )} />
       )}
     </UserWidgetWrapper>
   )
