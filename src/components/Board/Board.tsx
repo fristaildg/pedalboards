@@ -46,6 +46,10 @@ const BoardFooter = styled.footer`
   align-items: flex-start;
 `
 
+const DeleteButton = styled(Button)`
+  margin-left: auto;
+`
+
 const Board = ({ className }: BoardProps) => {
   const dispatch = useDispatch()
   const pedals = useSelector(pedalsSelector)
@@ -114,6 +118,7 @@ const Board = ({ className }: BoardProps) => {
         </Button>
         <Spacer />
         <CopyBoardLink boardId={boardId} />
+        <DeleteButton intent="danger">Delete Pedalboard</DeleteButton>
       </BoardFooter>
       <Alert
         isOpen={alertVisible}

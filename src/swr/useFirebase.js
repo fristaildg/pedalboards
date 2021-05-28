@@ -32,12 +32,14 @@ export const useBoard = (boardId) => {
   const loading = status === 'loading'
   const error = status !== 'success' && status !== 'loading'
   const updateBoard = (boardData) => boardRef.update(boardData)
+  const deleteBoard = () => boardRef.delete()
 
   return {
     board,
     loading,
     error,
-    updateBoard
+    updateBoard,
+    deleteBoard,
   }
 }
 

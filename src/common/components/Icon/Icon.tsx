@@ -7,7 +7,7 @@ type IconProps = {
   src?: string
   color?: string
   width?: number
-  onClick?: () => void
+  onClick?: (event?: any) => void
   className?: string
   icon?: string
 }
