@@ -22,7 +22,7 @@ const Header = styled.header`
 `
 
 const Dashboard = ({ user }: DashboardProps) => {
-  const { boards, loading, createBoard } = useBoards()
+  const { createBoard } = useBoards()
   const goToBoard = useGoToBoard()
   const { given_name, nickname, sub } = user
 
@@ -44,12 +44,7 @@ const Dashboard = ({ user }: DashboardProps) => {
           <Button onClick={onCreateClick}>Create pedalboard</Button>
         </Header>
         <Spacer />
-        {loading && <Text>Loading boards</Text>}
-        {boards && boards.length > 0 ? (
-          <BoardList boards={boards as BoardDocument[]} />
-        ) : (
-          <BoardListEmpty />
-        )}
+        <BoardList />
       </Grid>
     </DashboardWrapper>
   )

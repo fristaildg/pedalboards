@@ -13,5 +13,6 @@ export { Alert } from './components/Alert'
 export { Popover } from './components/Popover'
 export { Animation } from './components/Animation'
 export { Spinner } from './components/Spinner'
+export { Container } from './components/Container'
 
 export type { ModalProps } from './components/Modal'

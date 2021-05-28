@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { Text } from '../src/common'
+import { Spinner, Text } from '../src/common'
 import DashboardComp from '../src/components/Dashboard'
 import withProtectedRoute from '../src/utils/withProtectedRoute'
 
@@ -14,4 +14,4 @@ const Dashboard = () => {
   )
 }
 
-export default withProtectedRoute(Dashboard)
+export default withProtectedRoute(Dashboard, Spinner)

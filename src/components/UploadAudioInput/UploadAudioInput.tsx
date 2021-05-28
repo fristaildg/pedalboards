@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { Text, Input, COLORS, FONTS, SIZES } from '../../common'
+import { Input, COLORS, FONTS, SIZES, Spinner } from '../../common'
 import { useAudioFiles } from '../../swr/useFirebase'
 import { toggleAlert, setAlertMessage } from '../../redux/audioPlayer'
 
@@ -42,7 +42,7 @@ const UploadAudioInput = () => {
     }
   }
 
-  if (loading) return <Text>Uploading audio...</Text>
+  if (loading) return <Spinner />
 
   // @ts-ignore
   return <UploadInput type="file" accept="audio/*" onChange={handleFileUpload} helperText={helperText} />

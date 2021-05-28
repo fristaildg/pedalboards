@@ -9,9 +9,10 @@ type AnimationProps = {
   speed?: number
   width?: number
   height?: number
+  className?: string
 }
 
-const AnimationComp = ({ src, autoplay, loop, speed, width = 100, height = 100 }: AnimationProps) => {
+const AnimationComp = ({ src, autoplay, loop, speed, width = 100, height = 100, className }: AnimationProps) => {
   return (
     <Player
       src={src}
@@ -19,6 +20,7 @@ const AnimationComp = ({ src, autoplay, loop, speed, width = 100, height = 100 }
       loop={loop}
       speed={speed}
       style={{ height, width }}
+      className={className}
     />
   )
 }

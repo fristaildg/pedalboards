@@ -1,12 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { COLORS, Text } from '../../common'
+import { COLORS, Container, Spinner, Text } from '../../common'
 import { BoardDocument } from '../../common/types'
+import { useBoards } from '../../swr/useFirebase'
 import { useGoToBoard } from '../Board'
-
-type BoardListProps = {
-  boards: BoardDocument[]
-}
+import BoardListEmpty from './BoardListEmpty'
 
 const List = styled.ul`
   list-style: none;
@@ -24,17 +22,30 @@ const ListItem = styled.li`
   }
 `
 
-const BoardList = ({ boards }: BoardListProps) => {
+const BoardList = () => {
+  const { loading, boards } = useBoards()
   const goToBoard = useGoToBoard()
 
   return (
-    <List>
-      {boards.map((board: BoardDocument) => (        
-        <ListItem key={board.NO_ID_FIELD} onClick={() => goToBoard(board)}>
-          <Text>{board.name}</Text>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      {loading ? (
+        <Container>
+          <Spinner />
+        </Container>
+      ) : (
+        boards && boards.length > 0 ? (
+          <List>
+            {boards.map((board: BoardDocument) => (        
+              <ListItem key={board.NO_ID_FIELD} onClick={() => goToBoard(board)}>
+                <Text>{board.name}</Text>
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+          <BoardListEmpty />
+        )
+      )}
+    </>
   )
 }
 
