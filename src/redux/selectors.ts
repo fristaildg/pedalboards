@@ -17,6 +17,7 @@ export const pedalModalSelector = (state: State) => state.pedal.pedalModal
 // Board
 export const boardNameSelector = (state: State) => state.board.boardName
 export const boardIdSelector = (state: State) => state.board.id
+export const deleteBoardModalSelector = (state: State) => state.board.deleteBoardModal
 
 // UI
 export const zoomSelector = (state: State) => state.ui.zoom

@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { COLORS, Icon, Modal, ModalBody, ModalFooter, Text, Button } from '../../common'
+import { useDispatch } from 'react-redux'
+import { toggleDeleteBoardModal } from '../../redux/board'
+import { COLORS, Icon, Text } from '../../common'
 import { BoardDocument } from '../../common/types'
-import { useBoard } from '../../swr/useFirebase'
 import { useGoToBoard } from '../Board'
 
 type ListItemProps = {
@@ -22,9 +23,8 @@ const StyledListItem = styled.li`
 `
 
 const ListItem = ({ board }: ListItemProps) => {
-  const [modalVisible, setModalVisible] = useState(false)
+  const dispatch = useDispatch()
   const goToBoard = useGoToBoard()
-  const { deleteBoard } = useBoard(board.NO_ID_FIELD)
 
   const handleItemClick = () => {
     goToBoard(board)
@@ -32,15 +32,7 @@ const ListItem = ({ board }: ListItemProps) => {
 
   const handleDeleteIconClick = (event: any) => {
     event.stopPropagation()
-    setModalVisible(true)
-  }
-
-  const handleDeleteClick = () => {
-    deleteBoard()
-  }
-
-  const handleCloseModalClick = () => {
-    setModalVisible(false)
+    dispatch(toggleDeleteBoardModal(board.NO_ID_FIELD))
   }
 
   return (
@@ -51,14 +43,6 @@ const ListItem = ({ board }: ListItemProps) => {
           <Icon icon="trash" onClick={handleDeleteIconClick} />
         </div>
       </StyledListItem>
-      <Modal isOpen={modalVisible} onCloseClick={handleCloseModalClick}>
-        <ModalBody>
-          <Text>Are you sure you want to delete this board? (this action cannot be undone)</Text>
-        </ModalBody>
-        <ModalFooter>
-          <Button onClick={handleDeleteClick}>Delete</Button>
-        </ModalFooter>
-      </Modal>
     </>
   )
 }

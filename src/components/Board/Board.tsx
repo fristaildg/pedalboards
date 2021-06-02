@@ -3,15 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ReactSortable } from 'react-sortablejs'
 import styled, { css } from 'styled-components'
 import Pedal from '../Pedal'
-import { pedalsSelector, fitScreenSelector, boardNameSelector, boardIdSelector } from '../../redux/selectors'
+import { pedalsSelector, fitScreenSelector, boardNameSelector } from '../../redux/selectors'
 import { Pedal as PedalType } from '../../common/types'
 import { reorderPedals } from '../../redux/board'
 import SignalChain from '../SignalChain'
 import PedalboardName from '../PedalboardName'
-import { useBoard } from '../../swr/useFirebase'
 import AudioSamples from '../AudioSamples'
-import { COLORS, Spacer, Button, Alert, SubHeading, Text, SIZES } from '../../common'
-import CopyBoardLink from './CopyBoardLink'
+import { COLORS, Spacer, SubHeading, Text, SIZES } from '../../common'
+import BoardFooter from './BoardFooter'
 
 type BoardSurfaceProps = {
   pedalsLength?: number
@@ -41,25 +40,12 @@ const EmptyBoardSurface = styled(BoardSurface)`
   padding: ${SIZES.HEADER_HEIGHT}px;
 `
 
-const BoardFooter = styled.footer`
-  display: flex;
-  align-items: flex-start;
-`
-
-const DeleteButton = styled(Button)`
-  margin-left: auto;
-`
-
 const Board = ({ className }: BoardProps) => {
   const dispatch = useDispatch()
   const pedals = useSelector(pedalsSelector)
   const boardName = useSelector(boardNameSelector)
-  const boardId = useSelector(boardIdSelector)
   const fitScreen = useSelector(fitScreenSelector)
   const [reorderedPedals, setReorderedPedals] = useState()
-  const [saving, setSaving] = useState(false)
-  const { updateBoard } = useBoard()
-  const [alertVisible, setAlertVisible] = useState(false)  
   
   useEffect(() => {
     if (!!reorderedPedals) {
@@ -69,13 +55,6 @@ const Board = ({ className }: BoardProps) => {
   
   const handleSetList = (list: any) => {
     setReorderedPedals(list)    
-  }
-
-  const handleSaveClick = async () => {
-    setSaving(true)
-    await updateBoard({ name: boardName, pedals })
-    setSaving(false)
-    setAlertVisible(true)
   }
   
   return (
@@ -109,22 +88,7 @@ const Board = ({ className }: BoardProps) => {
       )}
       <AudioSamples />
       <Spacer />
-      <BoardFooter>
-        <Button
-          onClick={handleSaveClick}
-          isDisabled={saving}
-        >
-          {saving ? 'Saving' : 'Save Pedalboard'}
-        </Button>
-        <Spacer />
-        <CopyBoardLink boardId={boardId} />
-        <DeleteButton intent="danger">Delete Pedalboard</DeleteButton>
-      </BoardFooter>
-      <Alert
-        isOpen={alertVisible}
-        onTimeout={() => setAlertVisible(false)} 
-        message="Pedalboard saved!"
-      />
+      <BoardFooter />
     </div>
   )
 }

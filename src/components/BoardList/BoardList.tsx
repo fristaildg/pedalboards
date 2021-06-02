@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { COLORS, Container, Spinner, Text } from '../../common'
 import { BoardDocument } from '../../common/types'
 import { useBoards } from '../../swr/useFirebase'
-import { useGoToBoard } from '../Board'
+import DeleteBoardModal from '../DeleteBoardModal'
 import BoardListEmpty from './BoardListEmpty'
 import ListItem from './ListItem'
 
@@ -34,6 +34,7 @@ const BoardList = () => {
           <BoardListEmpty />
         )
       )}
+      <DeleteBoardModal />
     </>
   )
 }

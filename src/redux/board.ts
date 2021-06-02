@@ -6,12 +6,20 @@ export type BoardState = {
   id: string | null
   pedals: Pedal[]
   boardName: string
+  deleteBoardModal: {
+    isOpen: boolean
+    boardId: string | null
+  }
 }
 
 const initialState: BoardState = {
   id: null,
   boardName: 'My Pedalboard',
   pedals: [],
+  deleteBoardModal: {
+    isOpen: false,
+    boardId: null
+  },
 }
 
 const boardSlice = createSlice({
@@ -19,7 +27,7 @@ const boardSlice = createSlice({
   initialState,
   reducers: {
     setBoard(state, action) {
-      state.id = action.payload.NO_ID_FIELD
+      state.id = action.payload.NO_ID_FIELD || action.payload.id
       state.boardName = action.payload.name || initialState.boardName
       state.pedals = action.payload.pedals || []
     },
@@ -44,6 +52,14 @@ const boardSlice = createSlice({
 
       state.pedals[pedalIndex].knobs = knobs
     },
+    toggleDeleteBoardModal(state, action) {
+      state.deleteBoardModal.isOpen = !state.deleteBoardModal.isOpen
+      state.deleteBoardModal.boardId = action.payload
+    },
+    closeDeleteBoardModal(state) {
+      state.deleteBoardModal.isOpen = false
+      state.deleteBoardModal.boardId = null
+    }
   }
 })
 
@@ -56,5 +72,7 @@ export const {
   setBoardName,
   setBoard,
   addPedalKnobs,
+  toggleDeleteBoardModal,
+  closeDeleteBoardModal,
 } = boardSlice.actions
 export default boardSlice.reducer
