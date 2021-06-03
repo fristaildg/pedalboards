@@ -1,12 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## TODO
- - Enable user to delete pedalboard (from dashboard and my-board)
- - Enable user to duplicate a board
  - Work on Responsive styles
  - Loading animation / skeleton
    - Create skeleton component
-   ✔️ Implement these everywhere needed
  - - Create Skeleton pages for each protectedRoute page
  - Add Custom Pedal feature
  - Add translations
@@ -18,6 +15,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
  - Fix Delete audio alert message
  - - Add more text and fix styling on delete audio modal
  - Fix Zoom slider in PublicBoard (it does not go to the end of the bar)
+ - Enable user to duplicate a board
 
 ## Getting Started
 
