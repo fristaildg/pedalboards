@@ -7,6 +7,7 @@ import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 import Head from 'next/head'
 import styled from 'styled-components'
+import { appWithTranslation } from 'next-i18next'
 import store from '../src/store'
 import 'firebase/firestore';
 import 'firebase/storage';
@@ -72,4 +73,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
