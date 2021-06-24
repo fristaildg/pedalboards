@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { COLORS, Container, Spinner, Text } from '../../common'
+import { COLORS, Container, Spinner } from '../../common'
 import { BoardDocument } from '../../common/types'
 import { useBoards } from '../../swr/useFirebase'
 import DeleteBoardModal from '../DeleteBoardModal'

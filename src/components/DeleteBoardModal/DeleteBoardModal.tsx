@@ -26,7 +26,7 @@ const DeleteBoardButton = ({ boardId, onClick }:{boardId: string; onClick: () =>
 
 const DeleteBoardModal = ({ onDeleted }: DeleteBoardModalProps) => {
   const dispatch = useDispatch()
-  const { isOpen, boardId } = useSelector(deleteBoardModalSelector)
+  const { isOpen = false, boardId } = useSelector(deleteBoardModalSelector)
   const [alert, setAlert] = useState(false)
 
   const handleCloseClick = () => {
