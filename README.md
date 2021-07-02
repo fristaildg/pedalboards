@@ -1,12 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## TODO
+ - Add translations
  - Work on Responsive styles
  - Loading animation / skeleton
    - Create skeleton component
  - - Create Skeleton pages for each protectedRoute page
  - Add Custom Pedal feature
- - Add translations
  - Add tour guide to bard page
  - Write tests
  - Add more info to the welcome page

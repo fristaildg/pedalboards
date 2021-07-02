@@ -14,6 +14,7 @@ import 'firebase/storage';
 import '../styles/globals.css'
 import Header from '../src/components/Header'
 import { COLORS, SIZES, Spacer } from '../src/common'
+import nextI18nextConfig from '../next-i18next.config'
 
 const auth0Credentials = {
   domain: 'mtg-ts.auth0.com',
@@ -73,4 +74,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default appWithTranslation(MyApp)
+export default appWithTranslation(MyApp, nextI18nextConfig)

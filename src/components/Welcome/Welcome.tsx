@@ -2,6 +2,7 @@ import React from 'react'
 import { Heading, Text, SIZES, Spacer } from '../../common'
 import styled from 'styled-components'
 import LoginButton from '../LoginButton'
+import { useTranslation } from 'next-i18next'
 
 const PageWrapper = styled.div`
   display: flex;
@@ -35,10 +36,14 @@ const HeroImage = styled.div<{bgImage: string}>`
 `
 
 const Welcome = () => {
+  const { t, ready } = useTranslation('home')
+
+  console.log(ready)
+
   return (
     <PageWrapper>
       <LeftCol>
-        <Heading>Welcome to Pedalboards</Heading>
+        <Heading>{t('heading')}</Heading>
         <Spacer />
         <Text>Build your own guitar / bass-guitar pedalboard, <br /> attach sample sounds and share it with the whole world!</Text>
         <Spacer />
