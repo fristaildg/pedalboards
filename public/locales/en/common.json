@@ -1,1 +1,7 @@
-{}
+{
+  "delete_board_modal": {
+    "text": "Are you sure you want to delete this board? (this action cannot be undone)",
+    "button": "Delete",
+    "alert": "Board deleted successfully"
+  }
+}

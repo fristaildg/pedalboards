@@ -6,6 +6,7 @@ import BoardList from '../BoardList'
 import { BoardDocument } from '../../common/types'
 import { Grid } from '../../common'
 import { useGoToBoard } from '../Board'
+import { useTranslation } from 'next-i18next'
 
 type DashboardProps = {
   user: Record<string, string>
@@ -24,11 +25,12 @@ const Header = styled.header`
 const Dashboard = ({ user }: DashboardProps) => {
   const { createBoard } = useBoards()
   const goToBoard = useGoToBoard()
-  const { given_name, nickname, sub } = user
+  const { t } = useTranslation('dashboard')
+  const { sub } = user
 
   const onCreateClick = async () => {
     try {
-      const newBoard = await createBoard({ ownerId: sub, name: 'New Pedalboard', pedals: [] })
+      const newBoard = await createBoard({ ownerId: sub, name: t('new_board'), pedals: [] })
       goToBoard(newBoard as BoardDocument)
     } catch (error) {
       console.log(error)
@@ -37,11 +39,10 @@ const Dashboard = ({ user }: DashboardProps) => {
 
   return (
     <DashboardWrapper>
-      <Grid>  
-        <Text>Hello {given_name || nickname}</Text>
+      <Grid>
         <Header>
-          <Heading>My boards</Heading>
-          <Button onClick={onCreateClick}>Create pedalboard</Button>
+          <Heading>{t('my_boards')}</Heading>
+          <Button onClick={onCreateClick}>{t('create_board')}</Button>
         </Header>
         <Spacer />
         <BoardList />

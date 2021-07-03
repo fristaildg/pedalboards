@@ -1,0 +1,10 @@
+{
+  "loading_user": "Cargando usuario",
+  "my_boards": "Mis pedaleras",
+  "create_board": "Crear pedalera",
+  "new_board": "Nueva pedalera",
+  "board_list_empty": {
+    "heading": "Es hora de crear tu primera pedalera!",
+    "description": "Para empezar, clickea el botón \"Crear pedalera\""
+  }
+}

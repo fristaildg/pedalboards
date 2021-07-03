@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { COLORS, Spacer, SubHeading, Text, Container } from '../../common'
 import SVG from 'react-inlinesvg'
+import { useTranslation } from 'next-i18next'
 
 const ArrowImg = styled(SVG)`
   position: absolute;
@@ -12,11 +13,13 @@ const ArrowImg = styled(SVG)`
 `
 
 const BoardListEmpty = () => {
+  const { t } = useTranslation('dashboard')
+
   return (
     <Container>
-      <SubHeading>Time to create your first Board!</SubHeading>
+      <SubHeading>{t("board_list_empty.heading")}</SubHeading>
       <Spacer spacing={5} />
-      <Text>Click on the "Create pedalboard" button to begin</Text>
+      <Text>{t("board_list_empty.description")}</Text>
       <ArrowImg src="/arrow.svg" />
     </Container>
   )

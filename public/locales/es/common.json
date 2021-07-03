@@ -1,1 +1,7 @@
-{}
+{
+  "delete_board_modal": {
+    "text": "Estás seguro que quieres eliminar esta pedalera? (Esta acción no se puede deshacer)",
+    "button": "Eliminar",
+    "alert": "Eliminaste la pedalera"
+  }
+}

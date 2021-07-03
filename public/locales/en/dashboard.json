@@ -1,0 +1,10 @@
+{
+  "loading_user": "Loading user",
+  "my_boards": "My boards",
+  "create_board": "Create pedalboard",
+  "new_board": "New Pedalboard",
+  "board_list_empty": {
+    "heading": "Time to create your first Board!",
+    "description": "Click on the \"Create pedalboard\" button to begin"
+  }
+}

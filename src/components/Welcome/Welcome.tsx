@@ -36,16 +36,14 @@ const HeroImage = styled.div<{bgImage: string}>`
 `
 
 const Welcome = () => {
-  const { t, ready } = useTranslation('home')
-
-  console.log(ready)
+  const { t } = useTranslation('home')
 
   return (
     <PageWrapper>
       <LeftCol>
         <Heading>{t('heading')}</Heading>
         <Spacer />
-        <Text>Build your own guitar / bass-guitar pedalboard, <br /> attach sample sounds and share it with the whole world!</Text>
+        <Text>{t('description_1')}<br />{t('description_2')}</Text>
         <Spacer />
         <LoginButton />
       </LeftCol>
