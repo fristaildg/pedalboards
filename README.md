@@ -2,6 +2,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## TODO
  - Add translations
+ - Refactor translation files structure
+ - Add more info to the welcome page
+ - Add a lang button to header
+ - Add open graph for the public board
  - Work on Responsive styles
  - Loading animation / skeleton
    - Create skeleton component
@@ -9,7 +13,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
  - Add Custom Pedal feature
  - Add tour guide to bard page
  - Write tests
- - Add more info to the welcome page
  - Figure out how to add more pedals to the database / how to manage pedals database
  - Add user page
  - Fix Delete audio alert message

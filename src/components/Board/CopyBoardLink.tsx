@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { COLORS, Icon, SIZES, Text, Alert } from '../../common'
@@ -28,6 +29,7 @@ const CopyButton = styled.div`
 `
 
 const CopyBoardLink = ({ boardId }: CopyBoardLinkProps) => {
+  const { t } = useTranslation('my-board')
   const [showAlert, setShowAlert] = useState(false)
   const url = process.env.NODE_ENV === 'production' ? 'https://pedalboards-fristaildg.vercel.app' : 'http://localhost:3000'
   const boardLink = `${url}/board/${boardId}`
@@ -50,9 +52,9 @@ const CopyBoardLink = ({ boardId }: CopyBoardLinkProps) => {
       <Link>{boardLink}</Link>
       <CopyButton onClick={handleCopyClick}>
         <Icon icon="copy" />
-        <Text>Copy Link</Text>
+        <Text>{t('copy_link')}</Text>
       </CopyButton>
-      <Alert isOpen={showAlert} onTimeout={handleAlertTimeout} message="Link copied!" />
+      <Alert isOpen={showAlert} onTimeout={handleAlertTimeout} message={t('link_copied')} />
     </Wrapper>
   )
 }

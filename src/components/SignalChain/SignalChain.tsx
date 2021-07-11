@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { Pedal } from '../../common/types'
 import styled from 'styled-components'
 import { COLORS, Icon, Spacer, Text } from '../../common'
+import { useTranslation } from 'next-i18next'
 
 type SignalChainProps = {
   chain: Pedal[]
@@ -19,9 +20,11 @@ const PedalsWrapper = styled.div`
 `
 
 const SignalChain = ({ chain }: SignalChainProps) => {
+  const { t } = useTranslation('common')
+
   return (
     <SignalChainWrapper>
-      <Text fontStyle="sans-serif">Current signal chain:</Text>
+      <Text fontStyle="sans-serif">{t('signal_chain.heading')}:</Text>
       <Spacer />
       <PedalsWrapper>
         <Icon icon='music' width={40} color={COLORS.WHITE} />

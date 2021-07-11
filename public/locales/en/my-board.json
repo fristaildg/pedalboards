@@ -1,0 +1,32 @@
+{
+  "sidebar": {
+    "go_to_dashboard": "Go to dashboard",
+    "set_zoom": "Set zoom",
+    "fit_screen": "Fit Screen",
+    "choose_pedal": "Choose pedal"
+  },
+  "empty_board": {
+    "heading": "Let's Add some pedals!",
+    "description": "Select pedals from the list, sort them according to you signal chain and even add some knobs to each of them"
+  },
+  "copy_link": "Copy Link",
+  "link_copied": "Link copied!",
+  "save_pedalboard": "Save Pedalboard",
+  "saving": "Saving",
+  "delete_pedalboard": "Delete Pedalboard",
+  "pedalboard_saved": "Pedalboard saved!",
+  "pedal_modal": {
+    "empty_knobs": {
+      "knob_label": "pedal knob",
+      "heading": "Add some knobs!",
+      "description": "Add knobs like this one with a name and a value (1 - 10) to show how your pedal is configured",
+      "description_public": "No knobs have been added to this pedal yet"
+    },
+    "knob_input": {
+      "placeholder": "Volume, gain, treble, etc...",
+      "label": "Add a knob"
+    },
+    "add_knob": "Add knob",
+    "knobs_saved": "Knobs saved!"
+  }
+}

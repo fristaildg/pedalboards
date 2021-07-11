@@ -1,0 +1,32 @@
+{
+  "sidebar": {
+    "go_to_dashboard": "Ir al dashboard",
+    "set_zoom": "Setear zoom",
+    "fit_screen": "Encajar en pantalla",
+    "choose_pedal": "Elegir pedal"
+  },
+  "empty_board": {
+    "heading": "Agrega algunos pedales!",
+    "description": "Selecciona tus pedales de la lista y ordenalos de acuerdo a tu cadena. También puedes configurar las perillas de cada pedal"
+  },
+  "copy_link": "Copiar enlace",
+  "link_copied": "Enlace copiado!",
+  "save_pedalboard": "Guardar pedalera",
+  "saving": "Guardando",
+  "delete_pedalboard": "Borrar Pedalera",
+  "pedalboard_saved": "Pedalera guardada!",
+  "pedal_modal": {
+    "empty_knobs": {
+      "knob_label": "perilla",
+      "heading": "Agrega algunas perillas",
+      "description": "Agrega perillas como esta, con un nombre y un valor (1 a 10) para mostrar la configuración de tu pedal",
+      "description_public": "Este pedal todavía no tiene perillas configuradas"
+    },
+    "knob_input": {
+      "placeholder": "Volumen, ganancia, agudos, etc...",
+      "label": "Agrega una perilla"
+    },
+    "add_knob": "Agregar perilla",
+    "knobs_saved": "Perillas guardadas!"
+  }
+}

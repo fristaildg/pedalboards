@@ -4,6 +4,7 @@ import { usePedals } from '../../swr/usePedals'
 import { Pedal } from '../../common/types'
 import { useDispatch } from 'react-redux'
 import { addPedal } from '../../redux/board'
+import { useTranslation } from 'next-i18next'
 
 type PedalOption = {
   value: string
@@ -13,6 +14,7 @@ type PedalOption = {
 const PedalSelect = () => {
   const { pedals, loading } = usePedals()
   const dispatch = useDispatch()
+  const { t } = useTranslation('my-board')
   
   const pedalOptions = pedals && pedals.map((pedal: Pedal) => ({ value: pedal.Name, label: pedal.Name }))
 
@@ -23,7 +25,7 @@ const PedalSelect = () => {
 
   return (
     <Select
-      label="Choose a pedal"
+      label={t('sidebar.choose_pedal')}
       options={pedalOptions}
       onChange={(event: PedalOption) => getPedal(event)}
       isLoading={loading}

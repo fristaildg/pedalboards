@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Input, COLORS, FONTS, SIZES, Spinner } from '../../common'
 import { useAudioFiles } from '../../swr/useFirebase'
 import { toggleAlert, setAlertMessage } from '../../redux/audioPlayer'
+import { useTranslation } from 'next-i18next'
 
 const UploadInput = styled(Input)`
   input::file-selector-button {
@@ -27,12 +28,12 @@ const UploadAudioInput = () => {
   const { uploadFile, loading, uploadStatus } = useAudioFiles()
   const [ isTooLarge, setIsTooLarge ] = useState(false)
   const dispatch = useDispatch()
-  const helperText = isTooLarge ? 'This audio is too large to upload' : undefined
+  const { t } = useTranslation('common')
+  const helperText = isTooLarge ? t('audio_samples.input.too_large') : undefined
 
   const handleFileUpload = async (event: any) => {
     const file = event.target.files[0]
     const fileSize = Math.round((file.size / 1024))
-    console.log(file)
     if (fileSize > sizeLimit) {
       setIsTooLarge(true)
     } else {

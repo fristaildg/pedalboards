@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { COLORS, SIZES, Spinner } from '../src/common'
 import Board from '../src/components/Board'
 import Sidebar from '../src/components/Sidebar'
@@ -33,6 +34,14 @@ const MyBoard = () => {
       </PageWrapper>
     </PageContextProvider>
   )
+}
+
+export const getStaticProps = async ({ locale }: { locale: any }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["my-board", "common"]))
+    }
+  }
 }
 
 export default withProtectedRoute(MyBoard, Spinner)

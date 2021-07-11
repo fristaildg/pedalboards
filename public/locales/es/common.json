@@ -3,5 +3,16 @@
     "text": "Estás seguro que quieres eliminar esta pedalera? (Esta acción no se puede deshacer)",
     "button": "Eliminar",
     "alert": "Eliminaste la pedalera"
+  },
+  "signal_chain": {
+    "heading": "Cadena de señal"
+  },
+  "audio_samples": {
+    "loading": "Cargando samples de audio...",
+    "heading": "Samples de audio",
+    "description": "Sube hasta 2 archivos de audio (máx 5MB c/u)",
+    "input": {
+      "too_large": "Este audio es demasiado pesado"
+    }
   }
 }

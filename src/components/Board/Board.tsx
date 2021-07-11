@@ -11,6 +11,7 @@ import PedalboardName from '../PedalboardName'
 import AudioSamples from '../AudioSamples'
 import { COLORS, Spacer, SubHeading, Text, SIZES } from '../../common'
 import BoardFooter from './BoardFooter'
+import { useTranslation } from 'next-i18next'
 
 type BoardSurfaceProps = {
   pedalsLength?: number
@@ -46,6 +47,7 @@ const Board = ({ className }: BoardProps) => {
   const boardName = useSelector(boardNameSelector)
   const fitScreen = useSelector(fitScreenSelector)
   const [reorderedPedals, setReorderedPedals] = useState()
+  const { t } = useTranslation('my-board')
   
   useEffect(() => {
     if (!!reorderedPedals) {
@@ -80,8 +82,8 @@ const Board = ({ className }: BoardProps) => {
       ) : (
         <>
           <EmptyBoardSurface as='div'>
-            <SubHeading>Let's Add some pedals!</SubHeading>
-            <Text>Select pedals from the list, sort them according to you signal chain and even add some knobs to each of them</Text>
+            <SubHeading>{t('empty_board.heading')}</SubHeading>
+            <Text>{t('empty_board.description')}</Text>
           </EmptyBoardSurface>
           <Spacer />
         </>

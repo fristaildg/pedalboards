@@ -8,6 +8,7 @@ import { boardIdSelector, boardNameSelector, pedalsSelector } from '../../redux/
 import { useBoard } from '../../swr/useFirebase'
 import { toggleDeleteBoardModal } from '../../redux/board'
 import { useRouter } from "next/router";
+import { useTranslation } from 'next-i18next'
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -27,6 +28,7 @@ const BoardFooter = () => {
   const { updateBoard } = useBoard()
   const [alertVisible, setAlertVisible] = useState(false)
   const router = useRouter()
+  const { t } = useTranslation('my-board')
 
   const handleSaveClick = async () => {
     setSaving(true)
@@ -50,7 +52,7 @@ const BoardFooter = () => {
           onClick={handleSaveClick}
           isDisabled={saving}
         >
-          {saving ? 'Saving' : 'Save Pedalboard'}
+          {saving ? t('saving') : t('save_pedalboard')}
         </Button>
         <Spacer />
         <CopyBoardLink boardId={boardId} />
@@ -58,13 +60,13 @@ const BoardFooter = () => {
           intent="danger"
           onClick={handleDeleteClick}
         >
-          Delete Pedalboard
+          {t('delete_pedalboard')}
         </DeleteButton>
       </StyledFooter>
       <Alert
         isOpen={alertVisible}
         onTimeout={() => setAlertVisible(false)} 
-        message="Pedalboard saved!"
+        message={t('pedalboard_saved')}
       />
       <DeleteBoardModal onDeleted={handleOnDeleted} />
     </>

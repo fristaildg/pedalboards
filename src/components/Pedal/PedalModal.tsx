@@ -8,6 +8,7 @@ import { useKnobs } from './Pedal.utils'
 import { pedalModalSelector } from '../../redux/selectors'
 import { closePedalModal } from '../../redux/pedal'
 import { Pedal } from '../../common/types'
+import { useTranslation } from 'next-i18next'
 
 type PedalModalProps = {
   pedal: Pedal
@@ -39,21 +40,25 @@ const KnobGroup = styled.div`
   align-items: center;
 `
 
-const EmptyKnobsContainer = ({ isPublic }:{isPublic: boolean}) => (
-  !isPublic ? (
-    <>
-      <PedalKnob isDisabled label="pedal knob" />
-      <Spacer />
-      <div>
-        <SubHeading>Add some knobs!</SubHeading>
+const EmptyKnobsContainer = ({ isPublic }:{isPublic: boolean}) => {
+  const { t } = useTranslation('my-board')
+
+  return (
+    !isPublic ? (
+      <>
+        <PedalKnob isDisabled label={t('pedal_modal.empty_knobs.knob_label')} />
         <Spacer />
-        <Text>Add knobs like this one with a name and a value (1 - 10) to show how your pedal is configured</Text>
-      </div>
-    </>
-  ) : (
-    <Text>No knobs have been added to this pedal yet</Text>
+        <div>
+          <SubHeading>{t('pedal_modal.empty_knobs.heading')}</SubHeading>
+          <Spacer />
+          <Text>{t('pedal_modal.empty_knobs.description')}</Text>
+        </div>
+      </>
+    ) : (
+      <Text>{t('pedal_modal.empty_knobs.description_public')}</Text>
+    )
   )
-)
+}
 
 const PedalModal = ({ pedal }: PedalModalProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -62,6 +67,7 @@ const PedalModal = ({ pedal }: PedalModalProps) => {
   const { knobs, addKnob, removeKnob, saveKnobs, updateKnobValue } = useKnobs(pedal)
   const [alertVisible, setAlertVisible] = useState(false)
   const { isPublic } = useContext(PageContext)
+  const { t } = useTranslation('my-board')
 
   const handleAddKnobClick = () => {
     if (inputRef.current) {
@@ -94,12 +100,12 @@ const PedalModal = ({ pedal }: PedalModalProps) => {
         {!isPublic && (
           <AddKnob>
             <AddKnobInput
-              placeholder="Volume, gain, treble, etc..."
-              label="Add a knob"
+              placeholder={t('pedal_modal.knob_input.placeholder')}
+              label={t('pedal_modal.knob_input.label')}
               ref={inputRef}
             />
             <Spacer />
-            <Button onClick={handleAddKnobClick}>Add knob</Button>
+            <Button onClick={handleAddKnobClick}>{t('pedal_modal.add_knob')}</Button>
           </AddKnob>
         )}
       </StyledModalHeader>
@@ -120,7 +126,7 @@ const PedalModal = ({ pedal }: PedalModalProps) => {
           )}
         </KnobGroup>
       </ModalBody>
-      <Alert isOpen={alertVisible} onTimeout={() => setAlertVisible(false)} message="Knobs saved!" />
+      <Alert isOpen={alertVisible} onTimeout={() => setAlertVisible(false)} message={t('pedal_modal.knobs_saved')} />
     </Modal>
   )
 }

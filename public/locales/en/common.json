@@ -3,5 +3,16 @@
     "text": "Are you sure you want to delete this board? (this action cannot be undone)",
     "button": "Delete",
     "alert": "Board deleted successfully"
+  },
+  "signal_chain": {
+    "heading": "Current signal chain"
+  },
+  "audio_samples": {
+    "loading": "Loading audio samples...",
+    "heading": "Audio Samples",
+    "description": "Upload up to 2 audio files (5MB max each)",
+    "input": {
+      "too_large": "This audio is too large to upload"
+    }
   }
 }

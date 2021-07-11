@@ -7,6 +7,7 @@ import { COLORS, Heading, Spacer, Text } from '../../common'
 import { AudioFileObject } from '../../common/types'
 import DeleteAudioModal from '../AudioPlayer/DeleteAudioModal'
 import AudioPlayerAlert from '../AudioPlayer/AudioPlayerAlert'
+import { useTranslation } from 'next-i18next'
 
 type AudioSamplesProps = {
   boardId?: string
@@ -33,8 +34,9 @@ const UploadWrapper = styled.div`
 
 const AudioSamples = ({ boardId }: AudioSamplesProps) => {
   const { board, loading } = useBoard(boardId)
+  const { t } = useTranslation('common')
   
-  if (!board && loading) return <Text>Loading audio samples...</Text>
+  if (!board && loading) return <Text>{t('audio_samples.loading')}</Text>
 
   const { audioSamples = [] } = board
   const canUpload = audioSamples && audioSamples.length < 2
@@ -42,11 +44,11 @@ const AudioSamples = ({ boardId }: AudioSamplesProps) => {
   return (
     <AudioSamplesWrapper>
       <div>
-        <Heading tag='h2'>Audio Samples</Heading>
+        <Heading tag='h2'>{t('audio_samples.heading')}</Heading>
         <Spacer />
         {canUpload && (
           <UploadWrapper>
-            <Text>Upload up to 2 audio files (5MB max each)</Text>
+            <Text>{t('audio_samples.description')}</Text>
             <Spacer />
             <UploadAudioInput />
           </UploadWrapper>

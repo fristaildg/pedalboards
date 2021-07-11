@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import PedalSelect from '../PedalSelect'
 import ZoomControl from '../ZoomControl'
 import { COLORS, Icon, Spacer, Text } from '../../common'
+import { useTranslation } from 'next-i18next'
 
 type SidebarProps = {
   className?: string
@@ -40,6 +41,7 @@ const AsideListItem = styled.li<AsideListItemProps>`
 
 const Sidebar = ({ className }: SidebarProps) => {
   const router = useRouter()
+  const { t } = useTranslation('my-board')
 
   const goToDashboard = () => {
     router.push('/dashboard')
@@ -51,7 +53,7 @@ const Sidebar = ({ className }: SidebarProps) => {
         <AsideListItem horizontal onClick={goToDashboard}>
           <Icon icon='arrow-left' />
           <Spacer />
-          <Text>Go to dashboard</Text>
+          <Text>{t('sidebar.go_to_dashboard')}</Text>
         </AsideListItem>
         <AsideListItem>
           <ZoomControl />

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { COLORS, SIZES } from '../../src/common'
 import { PublicBoard } from '../../src/components/Board'
 import ZoomControl from '../../src/components/ZoomControl'
@@ -43,6 +44,12 @@ const UserBoard = () => {
   )
 }
 
-
+export const getServerSideProps = async ({ locale }: { locale: any }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["my-board", "common"]))
+    }
+  }
+}
 
 export default UserBoard
