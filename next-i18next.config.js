@@ -1,5 +1,5 @@
 module.exports = {
-  debug: true,
+  debug: false,
   serializeConfig: false,
   i18n: {
     defaultLocale: 'es',

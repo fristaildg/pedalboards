@@ -1,10 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## TODO
- - Refactor translation files structure
  - Add more info to the welcome page
- - Add a lang button to header
- - Add open graph for the public board
+ - Add open graph (for public board and welcome page)
+ - Figure out how to add more pedals to the database / how to manage pedals database
  - Work on Responsive styles
  - Loading animation / skeleton
    - Create skeleton component
@@ -12,12 +11,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
  - Add Custom Pedal feature
  - Add tour guide to bard page
  - Write tests
- - Figure out how to add more pedals to the database / how to manage pedals database
  - Add user page
  - Fix Delete audio alert message
  - - Add more text and fix styling on delete audio modal
  - Fix Zoom slider in PublicBoard (it does not go to the end of the bar)
  - Enable user to duplicate a board
+ - Refactor translation files structure
 
 ## Getting Started
 

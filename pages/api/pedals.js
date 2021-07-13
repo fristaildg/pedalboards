@@ -1,19 +1,7 @@
-// const fetchPedals = async () => {
-//   const data = await fetch('https://www.pedalplayground.com/public/data/pedals.json', {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json'
-//     }
-//   })
-//   const response =  await data.json()
-//   return JSON.parse(response)
-// }
-
 const pedalsHandler = async (req, res) => {
-  const pedals = JSON.parse('../../src/pedals.json')
-  res.status(200).json(pedals)
-  // return fetch('../../src/pedals.json')
-    // .then(pedals => res.status(200).json(pedals))  
+  const response = await fetch('https://www.pedalplayground.com/public/data/pedals.json')
+  const data = await response.json()
+  res.status(200).json(data)
 }
 
 export default pedalsHandler
