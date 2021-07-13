@@ -14,7 +14,7 @@ const Home = () => {
           description: 'Arma tu pedalera de guitarra o bajo. Adjunta samples de audio y compartelo con el mundo!',
           images: [
             {
-              url: '/hero-image.jpg',
+              url: 'https://pedalboards.vercel.app/hero-image.jpg',
               width: 800,
               height: 600,
               alt: 'Pedalboards'
