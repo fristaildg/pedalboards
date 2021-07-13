@@ -15,14 +15,11 @@ const UserBoardWrapper = styled.div`
 `
 
 const ZoomControlWrapper = styled.div`
-  /* display: inline-flex; */
-  /* align-items: center; */
   padding: 20px;
-  /* justify-content: flex-end; */
   border: 1px solid ${COLORS.GRAY};
   align-self: flex-end;
-  /* top: ${SIZES.HEADER_HEIGHT}px; */
-  /* position: sticky; */
+  top: ${SIZES.HEADER_HEIGHT}px;
+  position: sticky;
   background-color: ${COLORS.BODY};
 `
 

@@ -1,6 +1,5 @@
-const { i18n, lng } = require('./next-i18next.config')
+const { i18n } = require('./next-i18next.config')
 
 module.exports = {
-  lng,
   i18n,
 }

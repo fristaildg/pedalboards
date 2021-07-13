@@ -6,7 +6,7 @@ import { COLORS } from '../../theme/constants'
 import { Children } from '../../types'
 import { useOnClickOutside } from '../../../utils/hooks'
 
-type PopoverProps = {
+export type PopoverProps = {
   children: Children
   trigger: Children
   className?: string

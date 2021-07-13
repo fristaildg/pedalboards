@@ -1,6 +1,6 @@
-import React from 'react';
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Welcome from '../src/components/Welcome';
+import React from 'react'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import Welcome from '../src/components/Welcome'
 
 const Home = () => {
   return (

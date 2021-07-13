@@ -14,5 +14,6 @@ export { Popover } from './components/Popover'
 export { Animation } from './components/Animation'
 export { Spinner } from './components/Spinner'
 export { Container } from './components/Container'
+export { Menu, MenuItem } from './components/Menu'
 
 export type { ModalProps } from './components/Modal'

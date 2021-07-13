@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['ui', 'audioPlayer'],
+  blacklist: ['audioPlayer'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

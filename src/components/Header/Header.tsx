@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-// import LoginButton from '../LoginButton'
 import { useRouter } from 'next/router'
-import { COLORS, SIZES, Spacer, Text } from '../../common'
+import { COLORS, SIZES, Text } from '../../common'
 import UserWidget from '../UserWidget'
+import LangWidget from '../LangWidget'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -49,6 +49,7 @@ const Header = () => {
         <TypoLogo>Pedalboards</TypoLogo>
       </LogoContainer>
       <UserContainer>
+        <LangWidget />
         <UserWidget />
       </UserContainer>
     </StyledHeader>
