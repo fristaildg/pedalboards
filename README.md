@@ -17,6 +17,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
  - Fix Zoom slider in PublicBoard (it does not go to the end of the bar)
  - Enable user to duplicate a board
  - Refactor translation files structure
+ - Refactor public board no enable translations on the page (currently not working because it is dynamic)
+ - Truncate copy link on my-board
 
 ## Getting Started
 

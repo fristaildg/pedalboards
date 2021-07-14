@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Pedal } from '../../common/types'
 import styled from 'styled-components'
 import { COLORS, Icon, Spacer, Text } from '../../common'
 import { useTranslation } from 'next-i18next'
+import { PageContext } from '../../context/pageContext'
 
 type SignalChainProps = {
   chain: Pedal[]
@@ -21,10 +22,11 @@ const PedalsWrapper = styled.div`
 
 const SignalChain = ({ chain }: SignalChainProps) => {
   const { t } = useTranslation('common')
+  const { isPublic } = useContext(PageContext)
 
   return (
     <SignalChainWrapper>
-      <Text fontStyle="sans-serif">{t('signal_chain.heading')}:</Text>
+      <Text fontStyle="sans-serif">{!isPublic ? t('signal_chain.heading') : 'Signal Chain'}:</Text>
       <Spacer />
       <PedalsWrapper>
         <Icon icon='music' width={40} color={COLORS.WHITE} />

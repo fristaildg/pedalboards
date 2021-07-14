@@ -55,7 +55,7 @@ const EmptyKnobsContainer = ({ isPublic }:{isPublic: boolean}) => {
         </div>
       </>
     ) : (
-      <Text>{t('pedal_modal.empty_knobs.description_public')}</Text>
+      <Text>No knobs have been added to this pedal yet</Text>
     )
   )
 }

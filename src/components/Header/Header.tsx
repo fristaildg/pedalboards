@@ -39,8 +39,7 @@ const TypoLogo = styled(Text)`
 `
 
 const Header = () => {
-  const { push } = useRouter()
-
+  const { push, pathname } = useRouter()
   const goToHome = () => push('/')
 
   return (
@@ -49,7 +48,7 @@ const Header = () => {
         <TypoLogo>Pedalboards</TypoLogo>
       </LogoContainer>
       <UserContainer>
-        <LangWidget />
+        {pathname !== '/board/[id]' && <LangWidget />}
         <UserWidget />
       </UserContainer>
     </StyledHeader>
