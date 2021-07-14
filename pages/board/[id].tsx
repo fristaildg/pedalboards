@@ -41,12 +41,12 @@ const UserBoard = () => {
   )
 }
 
-export const getServerSideProps = async ({ locale }: { locale: any }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["my-board", "common"]))
-    }
-  }
-}
+// export const getServerSideProps = async ({ locale }: { locale: any }) => {
+//   return {
+//     props: {
+//       ...(await serverSideTranslations(locale, ["my-board", "common"]))
+//     }
+//   }
+// }
 
 export default UserBoard
