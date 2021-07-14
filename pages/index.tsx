@@ -7,12 +7,15 @@ import Welcome from '../src/components/Welcome'
 const Home = () => {
   return (
     <>
-      {/* <Head>
+      <Head>
         <title>Pedalboards</title>
-        <meta property="og:url" content="https://pedalboards.vercel.app"></meta>
-
-      </Head> */}
-      <NextSeo
+        <meta property="og:url" content="https://pedalboards.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Pedalboards" />
+        <meta property="og:description" content="Arma tu pedalera de guitarra o bajo. Adjunta samples de audio y compartelo con el mundo!" />
+        <meta property="og:image" content="https://pedalboards.vercel.app/hero-image.jpg" />        
+      </Head>
+      {/* <NextSeo
         title="Pedalboards"
         openGraph={{
           url: 'https://pedalboards.vercel.app',
@@ -29,7 +32,7 @@ const Home = () => {
           ],
           site_name: 'Pedalboards'
         }}
-      />
+      /> */}
       <Welcome />
     </>
   )
