@@ -19,6 +19,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
  - Refactor translation files structure
  - Refactor public board no enable translations on the page (currently not working because it is dynamic)
  - Truncate copy link on my-board
+ - Add loading indicator when creating a new board from dashboard
+ - Add linter / prettier
+ - show knobs below pedal
+ - Add width prop to Modal
 
 ## Getting Started
 
